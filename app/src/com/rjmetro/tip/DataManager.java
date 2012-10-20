@@ -360,9 +360,14 @@ public class DataManager {
 	private void updateCustom() {
 		float yoursum = getSumOfItems();
 		float taxPercent = data.tax/data.bill;
-		yoursum = yoursum + yoursum * taxPercent;
-		data.tipAmountYour = yoursum * data.tipPercent;
-		data.totalYour = yoursum + data.tipAmountYour;
+		if (!data.isValue(data.tax)) {
+			taxPercent = 0;
+		}
+		if (data.isValue(yoursum)) {
+			yoursum = yoursum + yoursum * taxPercent;
+			data.tipAmountYour = yoursum * data.tipPercent;
+			data.totalYour = yoursum + data.tipAmountYour;
+		}
 		
 		Log.d(TAG, "should we add an item? "+data.items.size() + " last: ");
 		if (data.items.size() <= 0 || data.items.get(data.items.size()-1) != 0f) {
