@@ -24,6 +24,9 @@ public class ComplicatedSplitFragment extends TipFragment {
 	@ViewById(R.id.tax_input)
 	HalfHintEditText tax;
 	
+	@ViewById(R.id.tax_text)
+	TextView taxText;
+	
 	@ViewById(R.id.tippercent_input)
 	HalfHintEditText tipPercent;
 
@@ -32,6 +35,9 @@ public class ComplicatedSplitFragment extends TipFragment {
 	
 	@ViewById(R.id.your_tipdollars_input)
 	HalfHintEditText yourTipDollars;
+	
+	@ViewById(R.id.your_tipdollars_text)
+	TextView yourTipDollarsText;
 	
 	@ViewById(R.id.your_total_value)
 	HalfHintEditText yourTotal;
@@ -78,6 +84,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 				callback.updateTipPercentage(text);				
 			}
 		});
+		taxText.setText(getResources().getString(R.string.tax, callback.getCurrencySymbol().trim()));
 		tax.setPermanentText(callback.getCurrencySymbol());
 		tax.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		tax.setPostEditListener(new SmartEditListener(tax) {
@@ -94,6 +101,8 @@ public class ComplicatedSplitFragment extends TipFragment {
 //				callback.updateNumber(text);				
 //			}
 //		});
+		yourTipDollarsText.setText(getResources().getString(R.string.your_tip_dollar, callback.getCurrencySymbol().trim()));
+		yourTipDollars.setHint(getResources().getString(R.string.your_tip_dollar_hint, callback.getCurrencySymbol().trim()));
 		yourTipDollars.setPermanentText(callback.getCurrencySymbol());
 		yourTipDollars.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		yourTipDollars.setPostEditListener(new SmartEditListener(yourTipDollars) {

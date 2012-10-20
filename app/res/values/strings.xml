@@ -32,16 +32,16 @@
     
     
     
-    <string name="tax">Tax $</string>
+    <string name="tax">Tax %s</string>
     <string name="tax_hint">Tax on Bill</string>
     
     <string name="your">YOUR SHARE</string>
     
     <string name="item_n">Item %2d</string>
     <string name="item_n_hint">Itemized Cost</string>
-    <string name="your_tip_dollar">Tip $</string>
-    <string name="your_tip_dollar_hint">Tip Amount (in $) for You</string>
+    <string name="your_tip_dollar">Tip %s</string>
+    <string name="your_tip_dollar_hint">Tip For You (in %s)</string>
     <string name="your_total">Total</string>
-    <string name="your_total_hint">Total Amount for You</string>
+    <string name="your_total_hint">Total for You</string>
     
 </resources>

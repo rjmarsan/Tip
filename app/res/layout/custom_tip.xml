@@ -92,7 +92,7 @@
 	    
 	    <TextView
 	        style="@style/divider_text"
-	        android:text="@string/each" />
+	        android:text="@string/your" />
 	    
 	    
 	    

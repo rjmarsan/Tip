@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.rjmetro.tip.R.layout;
 import com.rjmetro.tip.views.HalfHintEditText;
 
@@ -29,11 +30,13 @@ public final class ComplicatedSplitFragment_
     }
 
     private void afterSetContentView_() {
-        tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
         bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
+        taxText = ((TextView) findViewById(com.rjmetro.tip.R.id.tax_text));
         yourTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_total_value));
-        itemsHolder = ((LinearLayout) findViewById(com.rjmetro.tip.R.id.itemized_holder));
         tax = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tax_input));
+        yourTipDollarsText = ((TextView) findViewById(com.rjmetro.tip.R.id.your_tipdollars_text));
+        itemsHolder = ((LinearLayout) findViewById(com.rjmetro.tip.R.id.itemized_holder));
+        tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
         yourTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_tipdollars_input));
         setup();
     }
