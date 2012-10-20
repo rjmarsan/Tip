@@ -9,11 +9,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import com.rjmetro.tip.R.layout;
 import com.rjmetro.tip.views.HalfHintEditText;
 
-public final class SimpleTipFragment_
-    extends SimpleTipFragment
+public final class ComplicatedSplitFragment_
+    extends ComplicatedSplitFragment
 {
 
     private View contentView_;
@@ -28,10 +29,12 @@ public final class SimpleTipFragment_
     }
 
     private void afterSetContentView_() {
-        tipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tipdollars_input));
         bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
-        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
+        tax = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tax_input));
+        yourTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_total_value));
+        yourTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_tipdollars_input));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
+        itemsHolder = ((LinearLayout) findViewById(com.rjmetro.tip.R.id.itemized_holder));
         setup();
     }
 
@@ -39,7 +42,7 @@ public final class SimpleTipFragment_
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView_ = super.onCreateView(inflater, container, savedInstanceState);
         if (contentView_ == null) {
-            contentView_ = inflater.inflate(layout.simple_tip, container, false);
+            contentView_ = inflater.inflate(layout.custom_tip, container, false);
         }
         afterSetContentView_();
         return contentView_;

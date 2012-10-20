@@ -19,11 +19,11 @@ public class DataManager {
 	
 	public DataManager(Data data) {
 		this.data = data;
-		try {
-			updateBill("$30.00");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			updateBill("$30.00");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	
@@ -99,7 +99,7 @@ public class DataManager {
 		} else if (data.totalEnabled && data.isValue(data.total)) {
 			calculateTotal(data.total);
 		}
-		updateSplit();
+		updateOthers();
 		notifyChange();
 
 	}
@@ -110,10 +110,10 @@ public class DataManager {
 		} else {
 			float value = parsePercent(text);
 			clearSimpleEnabled();
-			data.tipPercentEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			data.tipPercentEnabled = true; 
 			
 			calculateTipPercent(value);
-			updateSplit();
+			updateOthers();
 		}
 		notifyChange();		
 	}
@@ -124,10 +124,10 @@ public class DataManager {
 		} else {
 			float value = parseMoney(text);
 			clearSimpleEnabled();
-			data.tipAmountEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			data.tipAmountEnabled = true; 
 			
 			calculateTipDollars(value);
-			updateSplit();
+			updateOthers();
 		}
 		notifyChange();		
 		
@@ -139,14 +139,78 @@ public class DataManager {
 		} else {
 			float value = parseMoney(text);
 			clearSimpleEnabled();
-			data.totalEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			data.totalEnabled = true; 
 			
 			calculateTotal(value);
-			updateSplit();
+			updateOthers();
 		}
 		notifyChange();		
 
 	}
+	
+	/** Stuff for the split screen **/
+	
+	public void updateNumber(String text) throws ParseException {
+		if (text.equals("")) {
+			return;
+		} else {
+			int value = parseInteger(text);
+
+			calculateNumberOfPeople(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+	public void updateTotalEach(String text) throws ParseException {
+		if (text.equals("")) {
+			clearSplitEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearSplitEnabled();
+			data.totalEachEnabled = true; 
+			
+			calculateTotalEach(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+	public void updateTipDollarsEach(String text) throws ParseException {
+		if (text.equals("")) {
+			clearSplitEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearSplitEnabled();
+			data.tipAmountEachEnabled = true; 
+			
+			calculateTipDollarsEach(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+	
+	/** stuff for the custom screen **/
+	public void updateTax(String text) throws ParseException {
+		if (text.equals("")) {
+			return;
+		} else {
+			float value = parseMoney(text);
+
+			calculateTax(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+
+	
+	
+
+	/**                             **/
 	
 	
 	public void calculateTipPercent(float value) {
@@ -196,58 +260,31 @@ public class DataManager {
 		calculateTipDollars(value*data.numberOfPeople);
 		data.tipAmountEach = value;
 	}
-
 	
-	
-	
-	public void updateNumber(String text) throws ParseException {
-		if (text.equals("")) {
-			return;
-		} else {
-			int value = parseInteger(text);
-
-			calculateNumberOfPeople(value);
-			updateSplit();
-		}
-		notifyChange();		
-
+	public void calculateTax(float value) {
+		data.tax = value;
 	}
-	public void updateTotalEach(String text) throws ParseException {
-		if (text.equals("")) {
-			clearSplitEnabled();
-			data.tipPercentEnabled = true;
-		} else {
-			float value = parseMoney(text);
-			clearSplitEnabled();
-			data.totalEachEnabled = true; //yeah, because we're calling this, it must be from the user....?
-			
-			calculateTotalEach(value);
-			updateSplit();
-		}
-		notifyChange();		
-
-	}
-	public void updateTipDollarsEach(String text) throws ParseException {
-		if (text.equals("")) {
-			clearSplitEnabled();
-			data.tipPercentEnabled = true;
-		} else {
-			float value = parseMoney(text);
-			clearSplitEnabled();
-			data.tipAmountEachEnabled = true; //yeah, because we're calling this, it must be from the user....?
-			
-			calculateTipDollarsEach(value);
-			updateSplit();
-		}
-		notifyChange();		
-
-	}
+	
+	
 
 	
-	public void updateSplit() {
+	private void updateOthers() {
+		updateSplit();
+		updateCustom();
+	}
+	
+	private void updateSplit() {
 		data.tipAmountEach = data.tipAmount / data.numberOfPeople;
 		data.totalEach = data.total / data.numberOfPeople;
 		
+	}
+	
+	private void updateCustom() {
+		float yoursum = getSumOfItems();
+		float taxPercent = data.tax/data.bill;
+		yoursum = yoursum + yoursum * taxPercent;
+		data.tipAmountYour = yoursum * data.tipPercent;
+		data.totalYour = yoursum + data.tipAmountYour;
 	}
 	
 	
@@ -262,6 +299,24 @@ public class DataManager {
 		data.totalEachEnabled = false;
 		data.tipPercentEnabled = false;
 	}
+	private void clearCustomEnabled() {
+		data.tipAmountYourEnabled = false;
+		data.totalYourEnabled = false;
+		data.tipPercentEnabled = false;
+	}
+
+	
+	
+	private float getSumOfItems() {
+		float out = 0;
+		for (float f : data.items) out += f;
+		return out;
+	}
+	
+	
+	
+	
+	
 	
 	public String getCurrencySymbol() {
 		return Currency.getInstance(Locale.getDefault()).getSymbol();

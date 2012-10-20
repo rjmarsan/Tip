@@ -1,5 +1,7 @@
 package com.rjmetro.tip;
 
+import java.util.ArrayList;
+
 public class Data {
 	public final static float NO_VALUE = Float.MAX_VALUE;
 	
@@ -17,6 +19,16 @@ public class Data {
 	public boolean totalEachEnabled = false;
 	
 	public int numberOfPeople = 3;
+	
+	public float   tax = NO_VALUE;
+
+	public ArrayList<Float> items = new ArrayList<Float>();
+	public float   tipAmountYour = NO_VALUE;
+	public boolean tipAmountYourEnabled = false;
+	public float   totalYour = NO_VALUE;
+	public boolean totalYourEnabled = false;
+
+	
 	
 	public boolean isValue(float value) {
 		return (value != NO_VALUE);

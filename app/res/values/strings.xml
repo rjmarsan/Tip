@@ -18,6 +18,8 @@
     <string name="total">Total</string>
     <string name="total_hint">Total Amount</string>
     
+    
+    
     <string name="people">People #</string>
     <string name="people_hint">Number of People</string>
     <string name="each_tip_dollar">Tip $</string>
@@ -26,5 +28,19 @@
     <string name="each_total_hint">Total Amount Per Person</string>
 
     <string name="each">EACH</string>
+    
+    
+    
+    <string name="tax">Tax $</string>
+    <string name="tax_hint">Tax on Bill</string>
+    
+    <string name="your">YOUR SHARE</string>
+    
+    <string name="item_n">Item %d</string>
+    <string name="item_n_hint">Itemized Cost</string>
+    <string name="your_tip_dollar">Tip $</string>
+    <string name="your_tip_dollar_hint">Tip Amount (in $) for You</string>
+    <string name="your_total">Total</string>
+    <string name="your_total_hint">Total Amount for You</string>
     
 </resources>
