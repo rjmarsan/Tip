@@ -107,7 +107,7 @@ public class HalfHintEditText extends EditText {
 	
 	
 	private SpannableString styleString(String text, boolean highlight) {
-		if (text.equals("")) {
+		if (textIsEmpty(text)) {
 			setText("");
 			return new SpannableString("");
 		}
@@ -128,7 +128,7 @@ public class HalfHintEditText extends EditText {
 	}
 	
 	public void setUnformattedText(String text, boolean highlight) {
-		if (text.equals("")) {
+		if (textIsEmpty(text)) {
 			setText("");
 			return;
 		}
@@ -145,6 +145,10 @@ public class HalfHintEditText extends EditText {
 	public void setPermanentTextPre(boolean infront) {
 		this.permTextInFront = infront;
 		this.setUnformattedText("", false);
+	}
+	
+	private boolean textIsEmpty(String text) {
+		return text.trim().equals("");
 	}
 
 	

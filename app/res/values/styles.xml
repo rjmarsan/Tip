@@ -17,7 +17,8 @@
         <item name="android:textColorHighlight">@color/accent</item>
         <item name="android:textColorHint">@color/default_text_color</item>
         <item name="android:singleLine">true</item>
-    </style>
+        <item name="android:ellipsize">start</item> <!--  hack to get it to stop flashing -->
+        </style>
     <style name="field_box">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>

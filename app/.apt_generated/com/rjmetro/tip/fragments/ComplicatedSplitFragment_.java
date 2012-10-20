@@ -29,11 +29,11 @@ public final class ComplicatedSplitFragment_
     }
 
     private void afterSetContentView_() {
-        yourTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_total_value));
         tax = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tax_input));
+        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
+        yourTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_total_value));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
         yourTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_tipdollars_input));
-        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         itemsHolder = ((LinearLayout) findViewById(com.rjmetro.tip.R.id.itemized_holder));
         setup();
     }

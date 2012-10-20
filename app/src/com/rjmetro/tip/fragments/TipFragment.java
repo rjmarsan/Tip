@@ -49,18 +49,19 @@ public abstract class TipFragment extends Fragment implements DataListener {
 	
 	protected void setInputText(HalfHintEditText edit, String text, boolean enabled, boolean forced) {
 		if (edit == null) return;
+		text = text.trim();
 		if (forced == false && edit.isFocused() && edit.getText().toString().equals("")) {
-			Log.d(TAG, "blank input text for "+edit.getId()+". fixing: "+text);
+			Log.d(TAG, "blank input text for "+edit.getId()+". fixing: '"+text+"'");
 			edit.setUnformattedText(text, true);
 			edit.selectAll();
-		} if (forced == false && edit.isFocused()) {
-			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: "+text);
+		} else if (forced == false && edit.isFocused()) {
+			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: '"+text+"'");
 			//edit.setUnformattedText(edit.getText().toString(), true);
 		} else if (enabled) {
-			Log.d(TAG, "enabled text for "+edit.getId()+". fixing: "+text);
+			Log.d(TAG, "enabled text for "+edit.getId()+". fixing: '"+text+"'");
 			edit.setUnformattedText(text, true);
 		} else {
-			Log.d(TAG, "disabled text for "+edit.getId()+". fixing: "+text);
+			Log.d(TAG, "disabled text for "+edit.getId()+". fixing: '"+text+"'");
 			edit.setUnformattedText(text, false);
 		}
 	}
