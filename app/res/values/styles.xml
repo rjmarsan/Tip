@@ -1,6 +1,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Light"></style>
 
     <style name="item_label">
         <item name="android:layout_width">70sp</item>
@@ -14,6 +13,7 @@
         <item name="android:gravity">right</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:textColor">@color/bold_text_color</item>
+        <item name="android:textColorHighlight">@color/accent</item>
         <item name="android:textColorHint">@color/default_text_color</item>
     </style>
     <style name="field_box">
