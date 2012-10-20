@@ -82,7 +82,7 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
     }
     
     public void setupDataManager() {
-    	dataman = new DataManager();
+    	dataman = new DataManager(new Data());
     }
 
     @Override

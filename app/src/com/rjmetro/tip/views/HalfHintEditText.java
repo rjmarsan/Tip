@@ -15,9 +15,14 @@ import android.widget.EditText;
 import com.rjmetro.tip.R;
 
 public class HalfHintEditText extends EditText {
+	public static interface PostEditListener {
+		public void newText(String text);
+	}
+	
 	public static final String TAG = "HalfHintEditText";
 	String permanentText = "";
 	boolean permTextInFront = false;
+	PostEditListener listener;
 	
 	public HalfHintEditText(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -70,17 +75,23 @@ public class HalfHintEditText extends EditText {
 				String target = formatString(text);
 				Log.d(TAG, String.format("afterTextChanged: pre:%s, post:%s", text, target));
 				if (text.equals(target)) {
-					//cool. done.
+					if (listener != null) listener.newText(text);
 				} else {
 					styleStringAndSet(target);
-					if (permTextInFront)
-						setSelection(target.length(), target.length());
-					else
-						setSelection(target.length()-permanentText.length(), target.length()-permanentText.length());
+					if (getText().toString().length() > permanentText.length()) {
+						if (permTextInFront)
+							setSelection(target.length(), target.length());
+						else
+							setSelection(target.length()-permanentText.length(), target.length()-permanentText.length());
+					}
 				}
 			}
 		});
 		this.setSelectAllOnFocus(true);
+	}
+	
+	public void setPostEditListener(PostEditListener listener) {
+		this.listener = listener;
 	}
 	
 	private String formatString(String text) {
@@ -93,10 +104,11 @@ public class HalfHintEditText extends EditText {
 		return target;
 	}
 	
-	private void styleStringAndSet(String text) {
+	
+	private SpannableString styleString(String text) {
 		if (text.equals("")) {
 			setText("");
-			return;
+			return new SpannableString("");
 		}
 		SpannableString s = new SpannableString(text);
 		int permlen = permanentText.length();
@@ -105,8 +117,28 @@ public class HalfHintEditText extends EditText {
 		} else {
 			s.setSpan(new ForegroundColorSpan(getHintTextColors().getDefaultColor()), text.length()-permlen, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
+		return s;
+	}
+	private void styleStringAndSet(String target) {
+		SpannableString s = styleString(target);
 		setText(s);
 	}
 	
+	
+	public void setUnformattedText(String text) {
+		if (text.equals("")) {
+			setText("");
+			return;
+		}
+		String target = formatString(text);
+		if (target.equals(getText().toString()) == false)
+			styleStringAndSet(target);
+	}
+	public void setUnformattedHint(String text) {
+		String target = formatString(text);
+		setHint(target);
+	}
+
+
 	
 }
