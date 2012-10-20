@@ -22,10 +22,10 @@ public class SimpleTipFragment extends TipFragment {
 	HalfHintEditText bill;
 	
 	@ViewById(R.id.tippercent_input)
-	HalfHintEditText tipper;
+	HalfHintEditText tipPercent;
 	
 	@ViewById(R.id.tipdollars_input)
-	HalfHintEditText tipdol;
+	HalfHintEditText tipDollars;
 	
 	@ViewById(R.id.total_value)
 	HalfHintEditText total;
@@ -35,8 +35,8 @@ public class SimpleTipFragment extends TipFragment {
 	public void updatedData(Data newdata, DataManager dataman) {
 		Log.d(TAG, "got Updating data: "+newdata);
 		setInputText(bill, dataman.formatMoney(newdata.bill), true);
-		setInputText(tipper, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
-		setInputText(tipdol, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled);
+		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
+		setInputText(tipDollars, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled);
 		setInputText(total, dataman.formatMoney(newdata.total), newdata.totalEnabled);
 	}
 	
@@ -67,17 +67,17 @@ public class SimpleTipFragment extends TipFragment {
 				callback.updateBill(text);				
 			}
 		});
-		tipper.setPermanentText(callback.getPercentSymbol());
-		tipper.setPermanentTextPre(false);
-		tipper.setPostEditListener(new SmartEditListener(tipper) {
+		tipPercent.setPermanentText(callback.getPercentSymbol());
+		tipPercent.setPermanentTextPre(false);
+		tipPercent.setPostEditListener(new SmartEditListener(tipPercent) {
 			@Override
 			public void runEvent(String text) throws Exception {
 				callback.updateTipPercentage(text);				
 			}
 		});
-		tipdol.setPermanentText(callback.getCurrencySymbol());
-		tipdol.setPermanentTextPre(true);
-		tipdol.setPostEditListener(new SmartEditListener(tipdol) {
+		tipDollars.setPermanentText(callback.getCurrencySymbol());
+		tipDollars.setPermanentTextPre(true);
+		tipDollars.setPostEditListener(new SmartEditListener(tipDollars) {
 			@Override
 			public void runEvent(String text) throws Exception {
 				callback.updateTipDollars(text);				
