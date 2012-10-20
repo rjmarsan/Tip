@@ -15,7 +15,7 @@ import com.rjmetro.tip.DataManager.DataListener;
 public abstract class TipFragment extends Fragment implements DataListener {
 	DataManager callback;
 	
-	public TipFragment(DataManager callback) {
+	public void setCallback(DataManager callback) {
 		this.callback = callback;
 	}
 		

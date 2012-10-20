@@ -80,24 +80,6 @@ public class HalfHintEditText extends EditText {
 				}
 			}
 		});
-//		this.setOnFocusChangeListener(new OnFocusChangeListener() {
-//			
-//			@Override
-//			public void onFocusChange(View v, boolean hasFocus) {
-//				if (hasFocus) {
-//					String target = getText().toString();
-//					if (target.equals("") || target.length() < permanentText.length()) {
-//						Log.d(TAG, "No selection! "+target);
-//						return;
-//					}
-//					Log.d(TAG, "Selection!!! ");
-//					if (permTextInFront)
-//						setSelection(permanentText.length(), target.length());
-//					else
-//						setSelection(0, target.length()-permanentText.length());
-//				}
-//			}
-//		}); 
 		this.setSelectAllOnFocus(true);
 	}
 	

@@ -1,10 +1,6 @@
 package com.rjmetro.tip;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +13,8 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.rjmetro.tip.fragments.ComplicatedSplitFragment;
 import com.rjmetro.tip.fragments.EvenSplitFragment;
-import com.rjmetro.tip.fragments.SimpleTipFragment;
+import com.rjmetro.tip.fragments.SimpleTipFragment_;
+import com.rjmetro.tip.fragments.TipFragment;
 
 public class TipActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
 
@@ -121,14 +118,15 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
 
         @Override
         public Fragment getItem(int i) {
-            Fragment fragment = null;
+            TipFragment fragment = null;
             if (i == 0) {
-            	fragment = new EvenSplitFragment(dataman);
+            	fragment = new EvenSplitFragment();
             } else if (i == 1) {
-            	fragment = new SimpleTipFragment(dataman);
+            	fragment = new SimpleTipFragment_();
             } else {
-            	fragment = new ComplicatedSplitFragment(dataman);
+            	fragment = new ComplicatedSplitFragment();
             }
+        	fragment.setCallback(dataman);
             return fragment;
         }
 

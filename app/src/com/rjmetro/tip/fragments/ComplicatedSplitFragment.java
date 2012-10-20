@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class ComplicatedSplitFragment extends TipFragment {
-	public ComplicatedSplitFragment(DataManager callback) {
-		super(callback);
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

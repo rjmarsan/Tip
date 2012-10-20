@@ -13,9 +13,6 @@ import com.rjmetro.tip.DataManager;
 import com.rjmetro.tip.DataManager.DataListener;
 
 public class EvenSplitFragment extends TipFragment implements DataListener {
-	public EvenSplitFragment(DataManager callback) {
-		super(callback);
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

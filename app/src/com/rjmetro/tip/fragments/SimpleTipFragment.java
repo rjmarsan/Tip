@@ -5,23 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.googlecode.androidannotations.annotations.EFragment;
+import com.googlecode.androidannotations.annotations.ViewById;
 import com.rjmetro.tip.Data;
 import com.rjmetro.tip.DataManager;
 import com.rjmetro.tip.R;
+import com.rjmetro.tip.views.HalfHintEditText;
 
+@EFragment(R.layout.simple_tip)
 public class SimpleTipFragment extends TipFragment {
+	@ViewById(R.id.bill_input)
+	HalfHintEditText bill;
 	
-	public SimpleTipFragment(DataManager callback) {
-		super(callback);
-	}
+	@ViewById(R.id.tippercent_input)
+	HalfHintEditText tipper;
+	
+	@ViewById(R.id.tipdollars_input)
+	HalfHintEditText tipdol;
+	
+	@ViewById(R.id.total_value)
+	HalfHintEditText total;
 	
 	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.simple_tip, null);
-	}
-
-
 	@Override
 	public void updatedData(Data newdata, DataManager dataman) {
 		// TODO Auto-generated method stub
