@@ -3,6 +3,7 @@ package com.rjmetro.tip;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -24,6 +25,7 @@ public class DataManager {
 //		} catch (ParseException e) {
 //			e.printStackTrace();
 //		}
+		//data.items.add(15f);
 	}
 	
 	
@@ -206,6 +208,49 @@ public class DataManager {
 		notifyChange();		
 
 	}
+	public void updateTotalYour(String text) throws ParseException {
+		if (text.equals("")) {
+			clearCustomEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearCustomEnabled();
+			data.totalYourEnabled = true; 
+			
+			calculateTotalYour(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+	public void updateTipDollarsYour(String text) throws ParseException {
+		if (text.equals("")) {
+			clearCustomEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearCustomEnabled();
+			data.tipAmountYourEnabled = true; 
+			
+			calculateTipDollarsYour(value);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+	public void updateItem(String text, int index) throws ParseException {
+		if (text.equals("")) {
+			return;
+		} else {
+			float value = parseMoney(text);
+			
+			calculateItem(value, index);
+			updateOthers();
+		}
+		notifyChange();		
+
+	}
+
 
 	
 	
@@ -250,12 +295,10 @@ public class DataManager {
 	public void calculateNumberOfPeople(int number) {
 		data.numberOfPeople = number;
 	}
-	
 	public void calculateTotalEach(float value) {
 		calculateTotal(value*data.numberOfPeople);
 		data.totalEach = value;
 	}
-
 	public void calculateTipDollarsEach(float value) {
 		calculateTipDollars(value*data.numberOfPeople);
 		data.tipAmountEach = value;
@@ -264,6 +307,20 @@ public class DataManager {
 	public void calculateTax(float value) {
 		data.tax = value;
 	}
+	public void calculateTotalYour(float value) {
+		if (getSumOfItems() != 0)
+			calculateTipPercent( (value-getSumOfItems())/getSumOfItems() );
+		data.totalYour = value;
+	}
+	public void calculateTipDollarsYour(float value) {
+		if (getSumOfItems() != 0)
+			calculateTipPercent(value/getSumOfItems());
+		data.tipAmountYour = value;
+	}
+	public void calculateItem(float value, int index) {
+		data.items.set(index, value);
+	}
+	
 	
 	
 
@@ -285,6 +342,12 @@ public class DataManager {
 		yoursum = yoursum + yoursum * taxPercent;
 		data.tipAmountYour = yoursum * data.tipPercent;
 		data.totalYour = yoursum + data.tipAmountYour;
+		
+		Log.d(TAG, "should we add an item? "+data.items.size() + " last: ");
+		if (data.items.size() <= 0 || data.items.get(data.items.size()-1) != 0f) {
+			Log.d(TAG, "Adding an item");
+			data.items.add(Float.valueOf(0f));
+		}
 	}
 	
 	

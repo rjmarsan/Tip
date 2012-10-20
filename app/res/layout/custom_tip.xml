@@ -113,9 +113,6 @@
 		        android:layout_height="wrap_content"
 		        android:orientation="vertical">
 
-	            <include layout="@layout/itemized_row"/>	
-	            <include layout="@layout/itemized_row"/>	  
-	            <include layout="@layout/itemized_row"/>	            
 	        </LinearLayout>
 	        
 		    <TextView

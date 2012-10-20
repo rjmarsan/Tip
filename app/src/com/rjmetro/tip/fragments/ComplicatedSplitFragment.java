@@ -1,7 +1,10 @@
 package com.rjmetro.tip.fragments;
 
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EFragment;
@@ -36,13 +39,25 @@ public class ComplicatedSplitFragment extends TipFragment {
 	
 	@Override
 	public void updatedData(Data newdata, DataManager dataman) {
-		Log.d(TAG, "got Updating data: "+newdata);
+		Log.d(TAG, "COMPLICATED got Updating data: "+newdata);
 		setInputText(bill, dataman.formatMoney(newdata.bill), true);
 		setInputText(tax, dataman.formatMoney(newdata.tax), true);		
 		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
 		setInputText(yourTipDollars, dataman.formatMoney(newdata.tipAmountYour), newdata.tipAmountYourEnabled);
 		setInputText(yourTotal, dataman.formatMoney(newdata.totalYour), newdata.totalYourEnabled);
+		
+		Log.d(TAG, "COMPLICATED childcount: "+itemsHolder.getChildCount()+ " items: "+newdata.items.size());
+		while (itemsHolder.getChildCount() < newdata.items.size()) {
+			Log.d(TAG, "Adding new row!!!");
+			View v = LayoutInflater.from(getActivity()).inflate(R.layout.itemized_row, itemsHolder, false);
+			setupItemizedRow(v, itemsHolder.getChildCount());
+			itemsHolder.addView(v);
+		}
+		while (itemsHolder.getChildCount() > newdata.items.size()) {
+			itemsHolder.removeViewAt(itemsHolder.getChildCount()-1);
+		}
 	}
+	
 	
 	
 	@AfterViews
@@ -63,6 +78,14 @@ public class ComplicatedSplitFragment extends TipFragment {
 				callback.updateTipPercentage(text);				
 			}
 		});
+		tax.setPermanentText(callback.getCurrencySymbol());
+		tax.setPermanentTextPre(true);
+		tax.setPostEditListener(new SmartEditListener(tax) {
+			@Override
+			public void runEvent(String text) throws Exception {
+				callback.updateTax(text);				
+			}
+		});
 //		numberPeople.setPermanentText("");
 //		numberPeople.setPermanentTextPre(true);
 //		numberPeople.setPostEditListener(new SmartEditListener(numberPeople) {
@@ -71,22 +94,37 @@ public class ComplicatedSplitFragment extends TipFragment {
 //				callback.updateNumber(text);				
 //			}
 //		});
-//		eachTipDollars.setPermanentText(callback.getCurrencySymbol());
-//		eachTipDollars.setPermanentTextPre(true);
-//		eachTipDollars.setPostEditListener(new SmartEditListener(eachTipDollars) {
-//			@Override
-//			public void runEvent(String text) throws Exception {
-//				callback.updateTipDollarsEach(text);				
-//			}
-//		});
-//		eachTotal.setPermanentText(callback.getCurrencySymbol());
-//		eachTotal.setPermanentTextPre(true);
-//		eachTotal.setPostEditListener(new SmartEditListener(eachTotal) {
-//			@Override
-//			public void runEvent(String text) throws Exception {
-//				callback.updateTotalEach(text);				
-//			}
-//		});
+		yourTipDollars.setPermanentText(callback.getCurrencySymbol());
+		yourTipDollars.setPermanentTextPre(true);
+		yourTipDollars.setPostEditListener(new SmartEditListener(yourTotal) {
+			@Override
+			public void runEvent(String text) throws Exception {
+				callback.updateTipDollarsYour(text);				
+			}
+		});
+		yourTotal.setPermanentText(callback.getCurrencySymbol());
+		yourTotal.setPermanentTextPre(true);
+		yourTotal.setPostEditListener(new SmartEditListener(yourTotal) {
+			@Override
+			public void runEvent(String text) throws Exception {
+				callback.updateTotalYour(text);				
+			}
+		});
+	}
+	
+	public void setupItemizedRow(View row, final int index) {
+		TextView title = (TextView)row.findViewById(R.id.item_n_text);
+		title.setText(getActivity().getResources().getString(R.string.item_n, (index+1) ));
+		
+		HalfHintEditText item = (HalfHintEditText)row.findViewById(R.id.item_n_input);
+		item.setPermanentText(callback.getCurrencySymbol());
+		item.setPermanentTextPre(true);
+		item.setPostEditListener(new SmartEditListener(item) {
+			@Override
+			public void runEvent(String text) throws Exception {
+				callback.updateItem(text, index);				
+			}
+		});
 	}
 	
 	

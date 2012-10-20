@@ -36,7 +36,7 @@
     
     <string name="your">YOUR SHARE</string>
     
-    <string name="item_n">Item %d</string>
+    <string name="item_n">Item %2d</string>
     <string name="item_n_hint">Itemized Cost</string>
     <string name="your_tip_dollar">Tip $</string>
     <string name="your_tip_dollar_hint">Tip Amount (in $) for You</string>
