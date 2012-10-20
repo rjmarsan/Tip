@@ -63,7 +63,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 	@AfterViews
 	public void setup() {
 		bill.setPermanentText(callback.getCurrencySymbol());
-		bill.setPermanentTextPre(true);
+		bill.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		bill.setPostEditListener(new SmartEditListener(bill) {
 			@Override
 			public void runEvent(String text) throws Exception {
@@ -79,7 +79,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 			}
 		});
 		tax.setPermanentText(callback.getCurrencySymbol());
-		tax.setPermanentTextPre(true);
+		tax.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		tax.setPostEditListener(new SmartEditListener(tax) {
 			@Override
 			public void runEvent(String text) throws Exception {
@@ -87,7 +87,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 			}
 		});
 //		numberPeople.setPermanentText("");
-//		numberPeople.setPermanentTextPre(true);
+//		numberPeople.setPermanentTextPre(callback.currencyGoesAtBeginning());
 //		numberPeople.setPostEditListener(new SmartEditListener(numberPeople) {
 //			@Override
 //			public void runEvent(String text) throws Exception {
@@ -95,7 +95,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 //			}
 //		});
 		yourTipDollars.setPermanentText(callback.getCurrencySymbol());
-		yourTipDollars.setPermanentTextPre(true);
+		yourTipDollars.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		yourTipDollars.setPostEditListener(new SmartEditListener(yourTipDollars) {
 			@Override
 			public void runEvent(String text) throws Exception {
@@ -103,7 +103,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 			}
 		});
 		yourTotal.setPermanentText(callback.getCurrencySymbol());
-		yourTotal.setPermanentTextPre(true);
+		yourTotal.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		yourTotal.setPostEditListener(new SmartEditListener(yourTotal) {
 			@Override
 			public void runEvent(String text) throws Exception {
@@ -118,7 +118,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 		
 		HalfHintEditText item = (HalfHintEditText)row.findViewById(R.id.item_n_input);
 		item.setPermanentText(callback.getCurrencySymbol());
-		item.setPermanentTextPre(true);
+		item.setPermanentTextPre(callback.currencyGoesAtBeginning());
 		item.setPostEditListener(new SmartEditListener(item) {
 			@Override
 			public void runEvent(String text) throws Exception {

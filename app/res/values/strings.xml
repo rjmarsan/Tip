@@ -14,8 +14,8 @@
     <string name="bill_hint">Bill Amount</string>
     <string name="tip_percent">Tip %</string>
     <string name="tip_percent_hint">Tip Amount (in %)</string>
-    <string name="tip_dollar">Tip $</string>
-    <string name="tip_dollar_hint">Tip Amount (in $)</string>
+    <string name="tip_dollar">Tip %s</string>
+    <string name="tip_dollar_hint">Tip Amount (in %s)</string>
     <string name="total">Total</string>
     <string name="total_hint">Total Amount</string>
     

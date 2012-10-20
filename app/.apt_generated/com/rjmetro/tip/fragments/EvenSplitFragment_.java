@@ -28,10 +28,10 @@ public final class EvenSplitFragment_
     }
 
     private void afterSetContentView_() {
-        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
-        eachTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.each_total_value));
         numberPeople = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.people_input));
+        eachTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.each_total_value));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
+        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         eachTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.each_tipdollars_input));
         setup();
     }

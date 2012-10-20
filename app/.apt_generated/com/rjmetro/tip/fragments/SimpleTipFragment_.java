@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import com.rjmetro.tip.R.layout;
 import com.rjmetro.tip.views.HalfHintEditText;
 
@@ -28,10 +29,11 @@ public final class SimpleTipFragment_
     }
 
     private void afterSetContentView_() {
-        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
-        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
         tipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tipdollars_input));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
+        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
+        tipDollarsText = ((TextView) findViewById(com.rjmetro.tip.R.id.tipdollars_text));
+        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         setup();
     }
 

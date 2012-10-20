@@ -1,9 +1,7 @@
 package com.rjmetro.tip.fragments;
 
-import java.text.ParseException;
-
 import android.util.Log;
-import android.view.View;
+import android.widget.TextView;
 
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EFragment;
@@ -12,7 +10,6 @@ import com.rjmetro.tip.Data;
 import com.rjmetro.tip.DataManager;
 import com.rjmetro.tip.R;
 import com.rjmetro.tip.views.HalfHintEditText;
-import com.rjmetro.tip.views.HalfHintEditText.PostEditListener;
 
 @EFragment(R.layout.simple_tip)
 public class SimpleTipFragment extends TipFragment {
@@ -26,6 +23,9 @@ public class SimpleTipFragment extends TipFragment {
 	
 	@ViewById(R.id.tipdollars_input)
 	HalfHintEditText tipDollars;
+	
+	@ViewById(R.id.tipdollars_text)
+	TextView tipDollarsText;
 	
 	@ViewById(R.id.total_value)
 	HalfHintEditText total;
@@ -59,6 +59,8 @@ public class SimpleTipFragment extends TipFragment {
 				callback.updateTipPercentage(text);				
 			}
 		});
+		tipDollarsText.setText(getResources().getString(R.string.tip_dollar, callback.getCurrencySymbol()).trim());
+		tipDollars.setHint(getResources().getString(R.string.tip_dollar_hint, callback.getCurrencySymbol()).trim());
 		tipDollars.setPermanentText(callback.getCurrencySymbol());
 		tipDollars.setPermanentTextPre(true);
 		tipDollars.setPostEditListener(new SmartEditListener(tipDollars) {

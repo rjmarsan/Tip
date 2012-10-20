@@ -3,10 +3,10 @@ package com.rjmetro.tip;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Currency;
 import java.util.Locale;
 
+import android.content.Context;
 import android.util.Log;
 
 public class DataManager {
@@ -17,8 +17,9 @@ public class DataManager {
 	}
 	
 	Data data;
+	Context context;
 	
-	public DataManager(Data data) {
+	public DataManager(Data data, Context context) {
 		this.data = data;
 //		try {
 //			updateBill("$30.00");
@@ -26,6 +27,7 @@ public class DataManager {
 //			e.printStackTrace();
 //		}
 		//data.items.add(15f);
+		this.context = context;
 	}
 	
 	
@@ -75,14 +77,18 @@ public class DataManager {
 	}
 	
 	public String getCurrencySymbol() {
-		return Currency.getInstance(getLocale()).getSymbol();
+		return Currency.getInstance(getLocale()).getSymbol(getLocale());
+	}
+	public boolean currencyGoesAtBeginning() {
+		return true; // NO IDEA how to fix this.
 	}
 	public String getPercentSymbol() {
 		return "%";
 	}
 	
 	public Locale getLocale() {
-		return new Locale("es", "ES");
+		return context.getResources().getConfiguration().locale;
+		//return new Locale("es", "ES");
 	}
 
 
