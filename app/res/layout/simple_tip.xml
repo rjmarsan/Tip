@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.rjmetro.tip"
+    xmlns:tip="http://schemas.android.com/apk/res/com.rjmetro.tip"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragment_background"
     android:padding="15dp"
-    xmlns:app="http://schemas.android.com/apk/res/com.rjmetro.tip">
+    >
     
     <LinearLayout
 	    android:layout_width="match_parent"
@@ -13,7 +15,6 @@
 	    android:orientation="vertical">
 	    
 	    <android.support.v7.widget.GridLayout 
-		    xmlns:app="http://schemas.android.com/apk/res/com.rjmetro.tip"
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    style="@style/field_box"
@@ -27,7 +28,7 @@
 		        style="@style/item_label"
 		        android:text="@string/bill" />
 		
-		    <EditText
+		    <com.rjmetro.tip.views.HalfHintEditText
 		        android:id="@+id/bill_input"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -35,9 +36,11 @@
 		        app:layout_gravity="fill_horizontal"
 		        app:layout_row="0"
 		        style="@style/item_input"
+		        tip:permanentHint="$"
+		        tip:permanentHintPre="true"
 		        android:hint="$37.13" >
 		        <requestFocus />
-		    </EditText>
+		    </com.rjmetro.tip.views.HalfHintEditText>
 		
 		    <TextView
 		        android:id="@+id/tippercent_text"
@@ -47,7 +50,7 @@
 		        style="@style/item_label"
 		        android:text="@string/tip_percent" />
 		
-		    <EditText
+		    <com.rjmetro.tip.views.HalfHintEditText
 		        android:id="@+id/tippercent_input"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -55,8 +58,9 @@
 		        app:layout_gravity="fill_horizontal"
 		        app:layout_row="1"
 		        style="@style/item_input"
+		        tip:permanentHint="%"
 		        android:hint="15%" >
-		    </EditText>
+		    </com.rjmetro.tip.views.HalfHintEditText>
 		
 		    
 		    <TextView
@@ -67,7 +71,7 @@
 		        style="@style/item_label"
 		        android:text="@string/tip_dollar" />
 		
-		    <EditText
+		    <com.rjmetro.tip.views.HalfHintEditText
 		        android:id="@+id/tipdollars_input"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -76,7 +80,7 @@
 		        app:layout_row="2"
 		        style="@style/item_input"
 		        android:hint="$4.23" >
-		    </EditText>
+		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    
 		    
@@ -88,7 +92,7 @@
 		        style="@style/item_label"
 		        android:text="@string/total" />
 		
-		    <EditText
+		    <com.rjmetro.tip.views.HalfHintEditText
 		        android:id="@+id/total_value"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
@@ -97,7 +101,7 @@
 		        app:layout_row="3"
 		        style="@style/item_input"
 		        android:hint="$41.23" >
-		    </EditText>
+		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    
 		</android.support.v7.widget.GridLayout>

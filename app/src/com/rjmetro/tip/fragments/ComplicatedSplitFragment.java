@@ -1,4 +1,7 @@
-package com.rjmetro.tip;
+package com.rjmetro.tip.fragments;
+
+import com.rjmetro.tip.Data;
+import com.rjmetro.tip.DataManager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

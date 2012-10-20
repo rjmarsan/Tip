@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="HalfHintEditText">
+        <attr name="permanentHint" format="string" />
+        <attr name="permanentHintPre" format="boolean" />
+    </declare-styleable>
+
+</resources>

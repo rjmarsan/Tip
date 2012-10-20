@@ -1,4 +1,4 @@
-package com.rjmetro.tip;
+package com.rjmetro.tip.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rjmetro.tip.Data;
+import com.rjmetro.tip.DataManager;
 import com.rjmetro.tip.DataManager.DataListener;
 
 public abstract class TipFragment extends Fragment implements DataListener {

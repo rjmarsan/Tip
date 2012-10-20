@@ -15,6 +15,9 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
+import com.rjmetro.tip.fragments.ComplicatedSplitFragment;
+import com.rjmetro.tip.fragments.EvenSplitFragment;
+import com.rjmetro.tip.fragments.SimpleTipFragment;
 
 public class TipActivity extends SherlockFragmentActivity implements ActionBar.TabListener {
 

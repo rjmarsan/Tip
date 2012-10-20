@@ -1,12 +1,13 @@
-package com.rjmetro.tip;
+package com.rjmetro.tip.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.rjmetro.tip.Data;
+import com.rjmetro.tip.DataManager;
+import com.rjmetro.tip.R;
 
 public class SimpleTipFragment extends TipFragment {
 	
@@ -17,10 +18,7 @@ public class SimpleTipFragment extends TipFragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setGravity(Gravity.CENTER);
-        textView.setText("SimpleTextFragment");
-        return textView;
+        return inflater.inflate(R.layout.simple_tip, null);
 	}
 
 
