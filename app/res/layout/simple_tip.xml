@@ -38,7 +38,7 @@
 		        style="@style/item_input"
 		        tip:permanentHint="$"
 		        tip:permanentHintPre="true"
-		        android:hint="$37.13" >
+		        android:hint="SHIT" >
 		        <requestFocus />
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		
@@ -59,7 +59,7 @@
 		        app:layout_row="1"
 		        style="@style/item_input"
 		        tip:permanentHint="%"
-		        android:hint="15%" >
+		        android:hint="POOOOOOP" >
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		
 		    
@@ -81,7 +81,7 @@
 		        style="@style/item_input"
 		        tip:permanentHint="US$"
 		        tip:permanentHintPre="true"
-		        android:hint="4.23" >
+		        android:hint="POOOOP" >
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    
@@ -104,7 +104,7 @@
 		        style="@style/item_input"
 		        tip:permanentHint="$"
 		        tip:permanentHintPre="true"
-		        android:hint="41.23" >
+		        android:hint="POOP" >
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    

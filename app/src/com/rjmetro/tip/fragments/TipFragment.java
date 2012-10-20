@@ -23,6 +23,7 @@ public abstract class TipFragment extends Fragment implements DataListener {
 	public void onStart() {
 		super.onStart();
 		callback.addListener(this);
+		callback.notifyChange();
 	}
 
 	@Override
@@ -33,5 +34,13 @@ public abstract class TipFragment extends Fragment implements DataListener {
 		super.onStop();
 		callback.removeListener(this);
 	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+//		// TODO Auto-generated method stub
+//		super.onSaveInstanceState(outState);
+		//Prevents an ugly crash. why? no idea.
+	}
+	
 	
 }

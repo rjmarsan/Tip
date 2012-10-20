@@ -34,19 +34,26 @@ public class SimpleTipFragment extends TipFragment {
 	
 	@Override
 	public void updatedData(Data newdata, DataManager dataman) {
-		Log.d(TAG, "Updating data: "+newdata);
-		setInputText(bill, dataman.formatMoney(newdata.tipPercent), true);
+		Log.d(TAG, "got Updating data: "+newdata);
+		setInputText(bill, dataman.formatMoney(newdata.bill), true);
 		setInputText(tipper, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
 		setInputText(tipdol, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled);
 		setInputText(total, dataman.formatMoney(newdata.total), newdata.totalEnabled);
 	}
 	
 	private void setInputText(HalfHintEditText edit, String text, boolean enabled) {
-		if (edit.isFocused()) {
+		if (edit.isFocused() && edit.getText().toString().equals("")) {
+			Log.d(TAG, "blank input text for "+edit.getId()+". fixing: "+text);
+			edit.setUnformattedText(text, true);
+			edit.selectAll();
+		} if (edit.isFocused()) {
+			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: "+text);
 			edit.setUnformattedText(edit.getText().toString(), true);
 		} else if (enabled) {
+			Log.d(TAG, "enabled text for "+edit.getId()+". fixing: "+text);
 			edit.setUnformattedText(text, true);
 		} else {
+			Log.d(TAG, "disabled text for "+edit.getId()+". fixing: "+text);
 			edit.setUnformattedText(text, false);
 		}
 	}
@@ -63,9 +70,6 @@ public class SimpleTipFragment extends TipFragment {
 				}
 			}
 		});
-		
-		
-		callback.notifyChange();
 	}
 	
 	

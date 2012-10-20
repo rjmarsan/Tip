@@ -4,7 +4,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import android.util.Log;
+
 public class DataManager {
+	public final static String TAG = "DataManager";
 
 	public static interface DataListener {
 		public void updatedData(Data newdata, DataManager dataman);
@@ -14,6 +17,11 @@ public class DataManager {
 	
 	public DataManager(Data data) {
 		this.data = data;
+		try {
+			updateBill("$30.00");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -61,11 +69,13 @@ public class DataManager {
 	
 	
 	public void updateBill(String text) throws ParseException {
+		Log.d(TAG, "Updating bill: "+text);
 		if (text.equals("")) {
 			//well... actually, nothing here.
 			return;
 		}
 		float value = parseMoney(text);
+		Log.d(TAG, "Updating bill: value:"+value);
 		if (data.isValue(value) == false) return;
 		if (data.tipPercentEnabled && data.isValue(data.tipPercent)) {
 			float bill = value;
@@ -93,7 +103,9 @@ public class DataManager {
 			data.tipPercent = percent;
 		}
 		data.bill = value;
+		Log.d(TAG, "2Updating bill: value:"+value);
 		notifyChange();
+		Log.d(TAG, "3Updating bill: value:"+value);
 
 	}
 	public void updateTipPercentage(String text) {
