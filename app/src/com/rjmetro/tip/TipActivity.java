@@ -50,6 +50,8 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayOptions(  ActionBar.DISPLAY_USE_LOGO 
+        							| ActionBar.DISPLAY_SHOW_HOME);
 //        actionBar.setDisplayShowHomeEnabled(false);
 //        actionBar.setDisplayShowTitleEnabled(false);
 //        actionBar.setDisplayShowCustomEnabled(false);
