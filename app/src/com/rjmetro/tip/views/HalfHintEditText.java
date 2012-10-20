@@ -136,6 +136,15 @@ public class HalfHintEditText extends EditText {
 			styleStringAndSet(target, highlight);
 	}
 
+	public void setPermanentText(String text) {
+		this.permanentText = text;
+		this.setUnformattedText("", false);
+	}
+	
+	public void setPermanentTextPre(boolean infront) {
+		this.permTextInFront = infront;
+		this.setUnformattedText("", false);
+	}
 
 	
 }

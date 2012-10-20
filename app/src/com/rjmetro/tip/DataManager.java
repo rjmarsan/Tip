@@ -3,6 +3,8 @@ package com.rjmetro.tip;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Currency;
+import java.util.Locale;
 
 import android.util.Log;
 
@@ -103,25 +105,80 @@ public class DataManager {
 			data.tipPercent = percent;
 		}
 		data.bill = value;
-		Log.d(TAG, "2Updating bill: value:"+value);
 		notifyChange();
-		Log.d(TAG, "3Updating bill: value:"+value);
 
 	}
-	public void updateTipPercentage(String text) {
+	public void updateTipPercentage(String text) throws ParseException {
+		if (text.equals("")) {
+			clearEnabled();
+			data.tipAmountEnabled = true;
+		} else {
+			float value = parsePercent(text);
+			clearEnabled();
+			data.tipPercentEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			
+			float bill = data.bill;
+			float percent = value;
+			float tipamount = bill*percent;
+			float total = bill + tipamount;
+			
+			data.tipAmount = tipamount;
+			data.total = total;
+		}
+		notifyChange();		
+	}
+	public void updateTipDollars(String text) throws ParseException {
+		if (text.equals("")) {
+			clearEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearEnabled();
+			data.tipAmountEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			
+			float bill = data.bill;
+			float tipamount = value;
+			float percent = tipamount/bill;
+			float total = bill + tipamount;
+			
+			data.tipPercent = percent;
+			data.total = total;
+		}
+		notifyChange();		
 		
 	}
-	public void updateTipDollars(String text) {
-		
-	}
-	public void updateTotal(String text) {
-		
+	public void updateTotal(String text) throws ParseException {
+		if (text.equals("")) {
+			clearEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearEnabled();
+			data.totalEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			
+			float bill = data.bill;
+			float total = value;
+			float tipamount = total-bill;
+			float percent = tipamount/bill;
+			
+			data.tipAmount = tipamount;
+			data.tipPercent = percent;
+		}
+		notifyChange();		
+
 	}
 	
 	private void clearEnabled() {
 		data.tipPercentEnabled = false;
 		data.tipAmountEnabled = false;
 		data.totalEnabled = false;
+	}
+	
+	public String getCurrencySymbol() {
+		return Currency.getInstance(Locale.getDefault()).getSymbol();
+	}
+	public String getPercentSymbol() {
+		return "%";
 	}
 
 

@@ -48,7 +48,7 @@ public class SimpleTipFragment extends TipFragment {
 			edit.selectAll();
 		} if (edit.isFocused()) {
 			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: "+text);
-			edit.setUnformattedText(edit.getText().toString(), true);
+			//edit.setUnformattedText(edit.getText().toString(), true);
 		} else if (enabled) {
 			Log.d(TAG, "enabled text for "+edit.getId()+". fixing: "+text);
 			edit.setUnformattedText(text, true);
@@ -60,13 +60,59 @@ public class SimpleTipFragment extends TipFragment {
 	
 	@AfterViews
 	public void setup() {
+		bill.setPermanentText(callback.getCurrencySymbol());
+		bill.setPermanentTextPre(true);
 		bill.setPostEditListener(new PostEditListener() {
 			@Override
 			public void newText(String text) {
-				try {
-					callback.updateBill(text);
-				} catch (ParseException e) {
-					e.printStackTrace();
+				if (bill.isFocused()) {
+					try {
+						callback.updateBill(text);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		tipper.setPermanentText(callback.getPercentSymbol());
+		tipper.setPermanentTextPre(false);
+		tipper.setPostEditListener(new PostEditListener() {
+			@Override
+			public void newText(String text) {
+				if (tipper.isFocused()) {
+					try {
+						callback.updateTipPercentage(text);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		tipdol.setPermanentText(callback.getCurrencySymbol());
+		tipdol.setPermanentTextPre(true);
+		tipdol.setPostEditListener(new PostEditListener() {
+			@Override
+			public void newText(String text) {
+				if (tipdol.isFocused()) {
+					try {
+						callback.updateTipDollars(text);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		total.setPermanentText(callback.getCurrencySymbol());
+		total.setPermanentTextPre(true);
+		total.setPostEditListener(new PostEditListener() {
+			@Override
+			public void newText(String text) {
+				if (total.isFocused()) {
+					try {
+						callback.updateTotal(text);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
