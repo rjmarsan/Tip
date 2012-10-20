@@ -23,10 +23,10 @@
     
     <string name="people">People #</string>
     <string name="people_hint">Number of People</string>
-    <string name="each_tip_dollar">Tip $</string>
-    <string name="each_tip_dollar_hint">Tip Amount (in $) Per Person</string>
+    <string name="each_tip_dollar">Tip %s</string>
+    <string name="each_tip_dollar_hint">Tip Each (in %s)</string>
     <string name="each_total">Total</string>
-    <string name="each_total_hint">Total Amount Per Person</string>
+    <string name="each_total_hint">Total Each</string>
 
     <string name="each">EACH</string>
     

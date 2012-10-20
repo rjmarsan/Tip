@@ -59,8 +59,8 @@ public class SimpleTipFragment extends TipFragment {
 				callback.updateTipPercentage(text);				
 			}
 		});
-		tipDollarsText.setText(getResources().getString(R.string.tip_dollar, callback.getCurrencySymbol()).trim());
-		tipDollars.setHint(getResources().getString(R.string.tip_dollar_hint, callback.getCurrencySymbol()).trim());
+		tipDollarsText.setText(getResources().getString(R.string.tip_dollar, callback.getCurrencySymbol().trim()));
+		tipDollars.setHint(getResources().getString(R.string.tip_dollar_hint, callback.getCurrencySymbol().trim()));
 		tipDollars.setPermanentText(callback.getCurrencySymbol());
 		tipDollars.setPermanentTextPre(true);
 		tipDollars.setPostEditListener(new SmartEditListener(tipDollars) {
