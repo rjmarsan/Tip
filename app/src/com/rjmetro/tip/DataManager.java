@@ -51,6 +51,10 @@ public class DataManager {
 	public String formatMoney(float value) {
 		if (data.isValue(value) == false) return "";
 		String s = NumberFormat.getCurrencyInstance(getLocale()).format(value);
+		if (s.endsWith(".00"))
+			s = s.replace(".00", "");
+		else if (s.endsWith(",00"))
+			s = s.replace(",00","");
 		return s;
 	}
 	
