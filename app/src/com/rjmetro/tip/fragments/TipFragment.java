@@ -27,11 +27,11 @@ public abstract class TipFragment extends Fragment implements DataListener {
 	public void onStart() {
 		super.onStart();
 		callback.addListener(this);
-		callback.notifyChange();
+		callback.notifyChange(true);
 	}
 
 	@Override
-	public abstract void updatedData(Data newdata, DataManager dataman);
+	public abstract void updatedData(Data newdata, DataManager dataman, boolean forced);
 	
 	@Override
 	public void onStop() {
@@ -47,13 +47,13 @@ public abstract class TipFragment extends Fragment implements DataListener {
 	}
 	
 	
-	protected void setInputText(HalfHintEditText edit, String text, boolean enabled) {
+	protected void setInputText(HalfHintEditText edit, String text, boolean enabled, boolean forced) {
 		if (edit == null) return;
-		if (edit.isFocused() && edit.getText().toString().equals("")) {
+		if (forced == false && edit.isFocused() && edit.getText().toString().equals("")) {
 			Log.d(TAG, "blank input text for "+edit.getId()+". fixing: "+text);
 			edit.setUnformattedText(text, true);
 			edit.selectAll();
-		} if (edit.isFocused()) {
+		} if (forced == false && edit.isFocused()) {
 			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: "+text);
 			//edit.setUnformattedText(edit.getText().toString(), true);
 		} else if (enabled) {

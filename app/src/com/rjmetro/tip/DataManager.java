@@ -13,7 +13,7 @@ public class DataManager {
 	public final static String TAG = "DataManager";
 
 	public static interface DataListener {
-		public void updatedData(Data newdata, DataManager dataman);
+		public void updatedData(Data newdata, DataManager dataman, boolean forced);
 	}
 	
 	Data data;
@@ -39,9 +39,9 @@ public class DataManager {
 	}
 	
 	
-	public void notifyChange() {
+	public void notifyChange(boolean forced) {
 		for (DataListener l : listeners) {
-			l.updatedData(data, this);
+			l.updatedData(data, this, forced);
 		}
 	}
 	
@@ -79,6 +79,11 @@ public class DataManager {
 	
 	
 	
+	public void clear() {
+		data = new Data();
+		notifyChange(true);
+	}
+	
 	
 	
 	public void updateBill(String text) throws ParseException {
@@ -102,7 +107,7 @@ public class DataManager {
 			calculateTotal(data.total);
 		}
 		updateOthers();
-		notifyChange();
+		notifyChange(false);
 
 	}
 	public void updateTipPercentage(String text) throws ParseException {
@@ -117,7 +122,7 @@ public class DataManager {
 			calculateTipPercent(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 	}
 	public void updateTipDollars(String text) throws ParseException {
 		if (text.equals("")) {
@@ -131,7 +136,7 @@ public class DataManager {
 			calculateTipDollars(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 		
 	}
 	public void updateTotal(String text) throws ParseException {
@@ -146,7 +151,7 @@ public class DataManager {
 			calculateTotal(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	
@@ -161,7 +166,7 @@ public class DataManager {
 			calculateNumberOfPeople(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	public void updateTotalEach(String text) throws ParseException {
@@ -176,7 +181,7 @@ public class DataManager {
 			calculateTotalEach(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	public void updateTipDollarsEach(String text) throws ParseException {
@@ -191,7 +196,7 @@ public class DataManager {
 			calculateTipDollarsEach(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	
@@ -205,7 +210,7 @@ public class DataManager {
 			calculateTax(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	public void updateTotalYour(String text) throws ParseException {
@@ -220,7 +225,7 @@ public class DataManager {
 			calculateTotalYour(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	public void updateTipDollarsYour(String text) throws ParseException {
@@ -235,7 +240,7 @@ public class DataManager {
 			calculateTipDollarsYour(value);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 	public void updateItem(String text, int index) throws ParseException {
@@ -247,7 +252,7 @@ public class DataManager {
 			calculateItem(value, index);
 			updateOthers();
 		}
-		notifyChange();		
+		notifyChange(false);
 
 	}
 

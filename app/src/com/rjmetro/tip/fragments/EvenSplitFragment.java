@@ -35,13 +35,13 @@ public class EvenSplitFragment extends TipFragment {
 	
 	
 	@Override
-	public void updatedData(Data newdata, DataManager dataman) {
+	public void updatedData(Data newdata, DataManager dataman, boolean forced) {
 		Log.d(TAG, "got Updating data: "+newdata);
-		setInputText(bill, dataman.formatMoney(newdata.bill), true);
-		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
-		setInputText(numberPeople, dataman.formatInteger(newdata.numberOfPeople), true);
-		setInputText(eachTipDollars, dataman.formatMoney(newdata.tipAmountEach), newdata.tipAmountEachEnabled);
-		setInputText(eachTotal, dataman.formatMoney(newdata.totalEach), newdata.totalEachEnabled);
+		setInputText(bill, dataman.formatMoney(newdata.bill), true, forced);
+		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled, forced);
+		setInputText(numberPeople, dataman.formatInteger(newdata.numberOfPeople), true, forced);
+		setInputText(eachTipDollars, dataman.formatMoney(newdata.tipAmountEach), newdata.tipAmountEachEnabled, forced);
+		setInputText(eachTotal, dataman.formatMoney(newdata.totalEach), newdata.totalEachEnabled, forced);
 	}
 	
 	

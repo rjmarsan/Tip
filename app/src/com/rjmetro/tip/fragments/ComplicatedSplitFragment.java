@@ -38,13 +38,13 @@ public class ComplicatedSplitFragment extends TipFragment {
 	
 	
 	@Override
-	public void updatedData(Data newdata, DataManager dataman) {
+	public void updatedData(Data newdata, DataManager dataman, boolean forced) {
 		Log.d(TAG, "COMPLICATED got Updating data: "+newdata);
-		setInputText(bill, dataman.formatMoney(newdata.bill), true);
-		setInputText(tax, dataman.formatMoney(newdata.tax), true);		
-		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
-		setInputText(yourTipDollars, dataman.formatMoney(newdata.tipAmountYour), newdata.tipAmountYourEnabled);
-		setInputText(yourTotal, dataman.formatMoney(newdata.totalYour), newdata.totalYourEnabled);
+		setInputText(bill, dataman.formatMoney(newdata.bill), true, forced);
+		setInputText(tax, dataman.formatMoney(newdata.tax), true, forced);		
+		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled, forced);
+		setInputText(yourTipDollars, dataman.formatMoney(newdata.tipAmountYour), newdata.tipAmountYourEnabled, forced);
+		setInputText(yourTotal, dataman.formatMoney(newdata.totalYour), newdata.totalYourEnabled, forced);
 		
 		Log.d(TAG, "COMPLICATED childcount: "+itemsHolder.getChildCount()+ " items: "+newdata.items.size());
 		while (itemsHolder.getChildCount() < newdata.items.size()) {

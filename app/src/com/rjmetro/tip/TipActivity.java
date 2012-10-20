@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.rjmetro.tip.fragments.ComplicatedSplitFragment_;
 import com.rjmetro.tip.fragments.EvenSplitFragment_;
 import com.rjmetro.tip.fragments.SimpleTipFragment_;
@@ -162,5 +163,21 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
 //    	// TODO Auto-generated method stub
 //    	super.onSaveInstanceState(outState);
     }
+    
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_clear:
+            clear();
+            return true;
+        }
+    	return super.onOptionsItemSelected(item);
+    }
 
+    
+    
+    public void clear() {
+    	dataman.clear();
+    }
 }

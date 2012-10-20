@@ -32,12 +32,12 @@ public class SimpleTipFragment extends TipFragment {
 	
 	
 	@Override
-	public void updatedData(Data newdata, DataManager dataman) {
+	public void updatedData(Data newdata, DataManager dataman, boolean forced) {
 		Log.d(TAG, "got Updating data: "+newdata);
-		setInputText(bill, dataman.formatMoney(newdata.bill), true);
-		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
-		setInputText(tipDollars, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled);
-		setInputText(total, dataman.formatMoney(newdata.total), newdata.totalEnabled);
+		setInputText(bill, dataman.formatMoney(newdata.bill), true, forced);
+		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled, forced);
+		setInputText(tipDollars, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled, forced);
+		setInputText(total, dataman.formatMoney(newdata.total), newdata.totalEnabled, forced);
 	}
 	
 	
