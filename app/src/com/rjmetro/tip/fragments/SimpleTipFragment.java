@@ -2,9 +2,8 @@ package com.rjmetro.tip.fragments;
 
 import java.text.ParseException;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EFragment;
@@ -62,76 +61,57 @@ public class SimpleTipFragment extends TipFragment {
 	public void setup() {
 		bill.setPermanentText(callback.getCurrencySymbol());
 		bill.setPermanentTextPre(true);
-		bill.setPostEditListener(new PostEditListener() {
+		bill.setPostEditListener(new SmartEditListener(bill) {
 			@Override
-			public void newText(String text) {
-				if (bill.isFocused()) {
-					try {
-						callback.updateBill(text);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+			public void runEvent(String text) throws Exception {
+				callback.updateBill(text);				
 			}
 		});
 		tipper.setPermanentText(callback.getPercentSymbol());
 		tipper.setPermanentTextPre(false);
-		tipper.setPostEditListener(new PostEditListener() {
+		tipper.setPostEditListener(new SmartEditListener(tipper) {
 			@Override
-			public void newText(String text) {
-				if (tipper.isFocused()) {
-					try {
-						callback.updateTipPercentage(text);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+			public void runEvent(String text) throws Exception {
+				callback.updateTipPercentage(text);				
 			}
 		});
 		tipdol.setPermanentText(callback.getCurrencySymbol());
 		tipdol.setPermanentTextPre(true);
-		tipdol.setPostEditListener(new PostEditListener() {
+		tipdol.setPostEditListener(new SmartEditListener(tipdol) {
 			@Override
-			public void newText(String text) {
-				if (tipdol.isFocused()) {
-					try {
-						callback.updateTipDollars(text);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+			public void runEvent(String text) throws Exception {
+				callback.updateTipDollars(text);				
 			}
 		});
 		total.setPermanentText(callback.getCurrencySymbol());
 		total.setPermanentTextPre(true);
-		total.setPostEditListener(new PostEditListener() {
+		total.setPostEditListener(new SmartEditListener(total) {
 			@Override
-			public void newText(String text) {
-				if (total.isFocused()) {
-					try {
-						callback.updateTotal(text);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+			public void runEvent(String text) throws Exception {
+				callback.updateTotal(text);				
 			}
 		});
 	}
 	
-	
-	public abstract class ValueWatcher implements TextWatcher {		
-		@Override
-		public void afterTextChanged(Editable s) {
-			changed(s.toString());
+	public abstract class SmartEditListener implements PostEditListener {
+		View target;
+		public SmartEditListener(View target) {
+			this.target = target;
 		}
 		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		public void newText(String text) {
+			if (target.isFocused()) {
+				try {
+					runEvent(text);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-		}
-		public abstract void changed(String text);
+		public abstract void runEvent(String text) throws Exception;
+
 	}
+	
 	
 	
 }
