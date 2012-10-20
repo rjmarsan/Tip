@@ -43,7 +43,7 @@ public class HalfHintEditText extends EditText {
 	
 	private void setup(AttributeSet attrs) {
 		setupCustomAttributes(attrs);
-		styleStringAndSet(formatString(getText().toString()));
+		styleStringAndSet(formatString(getText().toString()), true);
 		addTextWatcher();
 	}
 	
@@ -77,7 +77,7 @@ public class HalfHintEditText extends EditText {
 				if (text.equals(target)) {
 					if (listener != null) listener.newText(text);
 				} else {
-					styleStringAndSet(target);
+					styleStringAndSet(target, true);
 					if (getText().toString().length() > permanentText.length()) {
 						if (permTextInFront)
 							setSelection(target.length(), target.length());
@@ -105,38 +105,35 @@ public class HalfHintEditText extends EditText {
 	}
 	
 	
-	private SpannableString styleString(String text) {
+	private SpannableString styleString(String text, boolean highlight) {
 		if (text.equals("")) {
 			setText("");
 			return new SpannableString("");
 		}
 		SpannableString s = new SpannableString(text);
 		int permlen = permanentText.length();
-		if (permTextInFront) {
+		if (highlight == false) {
+			s.setSpan(new ForegroundColorSpan(getHintTextColors().getDefaultColor()), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		} else if (permTextInFront) {
 			s.setSpan(new ForegroundColorSpan(getHintTextColors().getDefaultColor()), 0, permlen, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		} else {
 			s.setSpan(new ForegroundColorSpan(getHintTextColors().getDefaultColor()), text.length()-permlen, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		return s;
 	}
-	private void styleStringAndSet(String target) {
-		SpannableString s = styleString(target);
+	private void styleStringAndSet(String target, boolean highlight) {
+		SpannableString s = styleString(target, highlight);
 		setText(s);
 	}
 	
-	
-	public void setUnformattedText(String text) {
+	public void setUnformattedText(String text, boolean highlight) {
 		if (text.equals("")) {
 			setText("");
 			return;
 		}
 		String target = formatString(text);
 		if (target.equals(getText().toString()) == false)
-			styleStringAndSet(target);
-	}
-	public void setUnformattedHint(String text) {
-		String target = formatString(text);
-		setHint(target);
+			styleStringAndSet(target, highlight);
 	}
 
 

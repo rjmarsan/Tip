@@ -81,7 +81,7 @@
 		        style="@style/item_input"
 		        tip:permanentHint="US$"
 		        tip:permanentHintPre="true"
-		        android:hint="$4.23" >
+		        android:hint="4.23" >
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    
@@ -104,7 +104,7 @@
 		        style="@style/item_input"
 		        tip:permanentHint="$"
 		        tip:permanentHintPre="true"
-		        android:hint="$41.23" >
+		        android:hint="41.23" >
 		    </com.rjmetro.tip.views.HalfHintEditText>
 		    
 		    

@@ -42,11 +42,13 @@ public class SimpleTipFragment extends TipFragment {
 	}
 	
 	private void setInputText(HalfHintEditText edit, String text, boolean enabled) {
-		if (edit.isFocused()) return; //don't touch it.
-		if (enabled) 
-			edit.setUnformattedText(text);
-		else
-			edit.setUnformattedHint(text);
+		if (edit.isFocused()) {
+			edit.setUnformattedText(edit.getText().toString(), true);
+		} else if (enabled) {
+			edit.setUnformattedText(text, true);
+		} else {
+			edit.setUnformattedText(text, false);
+		}
 	}
 	
 	@AfterViews
