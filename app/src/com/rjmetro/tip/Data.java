@@ -29,6 +29,9 @@ public class Data {
 	public boolean totalYourEnabled = false;
 
 	
+	public Data() {
+		items.add(0f);
+	}
 	
 	public boolean isValue(float value) {
 		return (value != NO_VALUE);
