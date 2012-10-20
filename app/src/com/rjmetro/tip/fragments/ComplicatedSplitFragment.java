@@ -50,7 +50,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 		while (itemsHolder.getChildCount() < newdata.items.size()) {
 			Log.d(TAG, "Adding new row!!!");
 			View v = LayoutInflater.from(getActivity()).inflate(R.layout.itemized_row, itemsHolder, false);
-			setupItemizedRow(v, itemsHolder.getChildCount());
+			setupItemizedRow(v, itemsHolder.getChildCount(), newdata.items.get(itemsHolder.getChildCount()));
 			itemsHolder.addView(v);
 		}
 		while (itemsHolder.getChildCount() > newdata.items.size()) {
@@ -96,7 +96,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 //		});
 		yourTipDollars.setPermanentText(callback.getCurrencySymbol());
 		yourTipDollars.setPermanentTextPre(true);
-		yourTipDollars.setPostEditListener(new SmartEditListener(yourTotal) {
+		yourTipDollars.setPostEditListener(new SmartEditListener(yourTipDollars) {
 			@Override
 			public void runEvent(String text) throws Exception {
 				callback.updateTipDollarsYour(text);				
@@ -112,7 +112,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 		});
 	}
 	
-	public void setupItemizedRow(View row, final int index) {
+	public void setupItemizedRow(View row, final int index, final float value) {
 		TextView title = (TextView)row.findViewById(R.id.item_n_text);
 		title.setText(getActivity().getResources().getString(R.string.item_n, (index+1) ));
 		
@@ -125,6 +125,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 				callback.updateItem(text, index);				
 			}
 		});
+		if (value != 0f) item.setUnformattedText(callback.formatMoney(value), false);
 	}
 	
 	

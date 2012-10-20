@@ -42,6 +42,7 @@ public class HalfHintEditText extends EditText {
 	}
 	
 	private void setup(AttributeSet attrs) {
+		setSaveEnabled(false);
 		setupCustomAttributes(attrs);
 		styleStringAndSet(formatString(getText().toString()), true);
 		addTextWatcher();

@@ -308,12 +308,12 @@ public class DataManager {
 		data.tax = value;
 	}
 	public void calculateTotalYour(float value) {
-		if (getSumOfItems() != 0)
+		if (getSumOfItems() > 0)
 			calculateTipPercent( (value-getSumOfItems())/getSumOfItems() );
 		data.totalYour = value;
 	}
 	public void calculateTipDollarsYour(float value) {
-		if (getSumOfItems() != 0)
+		if (getSumOfItems() > 0)
 			calculateTipPercent(value/getSumOfItems());
 		data.tipAmountYour = value;
 	}
@@ -373,6 +373,7 @@ public class DataManager {
 	private float getSumOfItems() {
 		float out = 0;
 		for (float f : data.items) out += f;
+		Log.d(TAG, "Sum of items: "+out);
 		return out;
 	}
 	
