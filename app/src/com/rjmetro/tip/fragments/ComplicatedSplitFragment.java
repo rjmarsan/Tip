@@ -53,6 +53,7 @@ public class ComplicatedSplitFragment extends TipFragment {
 		setInputText(yourTotal, dataman.formatMoney(newdata.totalYour), newdata.totalYourEnabled, forced);
 		
 		Log.d(TAG, "COMPLICATED childcount: "+itemsHolder.getChildCount()+ " items: "+newdata.items.size());
+		if (forced) itemsHolder.removeAllViews();
 		while (itemsHolder.getChildCount() < newdata.items.size()) {
 			Log.d(TAG, "Adding new row!!!");
 			View v = LayoutInflater.from(getActivity()).inflate(R.layout.itemized_row, itemsHolder, false);
