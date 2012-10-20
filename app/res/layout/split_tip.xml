@@ -114,7 +114,6 @@
 			    <com.rjmetro.tip.views.HalfHintEditText
 			        android:id="@+id/each_tipdollars_input"
 			        android:layout_width="0dp"
-			        android:layout_height="wrap_content"
 			        android:layout_weight="1"
 			        style="@style/item_input"
 			        tip:permanentHint="$"
@@ -135,7 +134,6 @@
 			    <com.rjmetro.tip.views.HalfHintEditText
 			        android:id="@+id/each_total_value"
 			        android:layout_width="0dp"
-			        android:layout_height="wrap_content"
 			        android:layout_weight="1"
 			        style="@style/item_input"
 			        tip:permanentHint="$"

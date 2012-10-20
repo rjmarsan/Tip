@@ -1,0 +1,8 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <style name="item_input" parent="item_input_nothack">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+</resources>
