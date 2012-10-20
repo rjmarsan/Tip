@@ -58,12 +58,21 @@ public class DataManager {
 		return NumberFormat.getPercentInstance().format(value);
 	}
 	
+	public String formatInteger(int value) {
+		if (data.isValue(value) == false) return "";
+		return NumberFormat.getIntegerInstance().format(value);
+	}
+	
 	public float parseMoney(String value) throws ParseException {
 		return NumberFormat.getCurrencyInstance().parse(value).floatValue();
 	}
 
 	public float parsePercent(String value) throws ParseException {
 		return NumberFormat.getPercentInstance().parse(value).floatValue();
+	}
+	
+	public int parseInteger(String value) throws ParseException {
+		return NumberFormat.getIntegerInstance().parse(value).intValue();
 	}
 	
 	
@@ -79,7 +88,16 @@ public class DataManager {
 		float value = parseMoney(text);
 		Log.d(TAG, "Updating bill: value:"+value);
 		if (data.isValue(value) == false) return;
-		if (data.tipPercentEnabled && data.isValue(data.tipPercent)) {
+		//this should be the first condition we hit.
+		if (data.tipPercentEnabled == false && data.isValue(data.tipPercent)) {
+			float bill = value;
+			float percent = data.tipPercent;
+			float tipamount = bill*percent;
+			float total = bill + tipamount;
+			
+			data.tipAmount = tipamount;
+			data.total = total;
+		} else if (data.tipPercentEnabled && data.isValue(data.tipPercent)) {
 			float bill = value;
 			float percent = data.tipPercent;
 			float tipamount = bill*percent;
@@ -124,6 +142,7 @@ public class DataManager {
 			
 			data.tipAmount = tipamount;
 			data.total = total;
+			data.tipPercent = value;
 		}
 		notifyChange();		
 	}
@@ -143,6 +162,7 @@ public class DataManager {
 			
 			data.tipPercent = percent;
 			data.total = total;
+			data.tipAmount = value;
 		}
 		notifyChange();		
 		
@@ -163,6 +183,7 @@ public class DataManager {
 			
 			data.tipAmount = tipamount;
 			data.tipPercent = percent;
+			data.total = value;
 		}
 		notifyChange();		
 

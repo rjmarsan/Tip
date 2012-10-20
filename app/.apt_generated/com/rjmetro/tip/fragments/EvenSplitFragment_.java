@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import com.rjmetro.tip.R.layout;
 import com.rjmetro.tip.views.HalfHintEditText;
 
-public final class SimpleTipFragment_
-    extends SimpleTipFragment
+public final class EvenSplitFragment_
+    extends EvenSplitFragment
 {
 
     private View contentView_;
@@ -28,10 +28,11 @@ public final class SimpleTipFragment_
     }
 
     private void afterSetContentView_() {
-        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
+        numberPeople = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.people_input));
         bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
-        tipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tipdollars_input));
+        eachTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.each_total_value));
+        eachTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.each_tipdollars_input));
         setup();
     }
 
@@ -39,7 +40,7 @@ public final class SimpleTipFragment_
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView_ = super.onCreateView(inflater, container, savedInstanceState);
         if (contentView_ == null) {
-            contentView_ = inflater.inflate(layout.simple_tip, container, false);
+            contentView_ = inflater.inflate(layout.split_tip, container, false);
         }
         afterSetContentView_();
         return contentView_;

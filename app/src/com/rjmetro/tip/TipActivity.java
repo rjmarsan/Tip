@@ -12,7 +12,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.rjmetro.tip.fragments.ComplicatedSplitFragment;
-import com.rjmetro.tip.fragments.EvenSplitFragment;
+import com.rjmetro.tip.fragments.EvenSplitFragment_;
 import com.rjmetro.tip.fragments.SimpleTipFragment_;
 import com.rjmetro.tip.fragments.TipFragment;
 
@@ -120,7 +120,7 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
         public Fragment getItem(int i) {
             TipFragment fragment = null;
             if (i == 0) {
-            	fragment = new EvenSplitFragment();
+            	fragment = new EvenSplitFragment_();
             } else if (i == 1) {
             	fragment = new SimpleTipFragment_();
             } else {

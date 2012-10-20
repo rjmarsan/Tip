@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.rjmetro.tip"
+    xmlns:tip="http://schemas.android.com/apk/res/com.rjmetro.tip"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragment_background"
+    android:padding="15dp"
+    >
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    
+	    <android.support.v7.widget.GridLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    style="@style/field_box"
+		    app:columnCount="2" >
+		
+		    <TextView
+		        android:id="@+id/bill_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="0"
+		        style="@style/item_label"
+		        android:text="@string/bill" />
+		
+		    <com.rjmetro.tip.views.HalfHintEditText
+		        android:id="@+id/bill_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="0"
+		        style="@style/item_input"
+		        tip:permanentHint="$"
+		        tip:permanentHintPre="true"
+		        android:hint="@string/bill_hint" >
+		        <requestFocus />
+		    </com.rjmetro.tip.views.HalfHintEditText>
+		
+		    <TextView
+		        android:id="@+id/tippercent_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="1"
+		        style="@style/item_label"
+		        android:text="@string/tip_percent" />
+		
+		    <com.rjmetro.tip.views.HalfHintEditText
+		        android:id="@+id/tippercent_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="1"
+		        style="@style/item_input"
+		        tip:permanentHint="%"
+		        android:hint="@string/tip_percent_hint" >
+		    </com.rjmetro.tip.views.HalfHintEditText>
+		
+		    
+		    <TextView
+		        android:id="@+id/people_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="2"
+		        style="@style/item_label"
+		        android:text="@string/people" />
+		
+		    <com.rjmetro.tip.views.HalfHintEditText
+		        android:id="@+id/people_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="2"
+		        style="@style/item_input"
+		        tip:permanentHint=""
+		        tip:permanentHintPre="true"
+		        android:hint="@string/people_hint"
+		        android:inputType="number" >
+		    </com.rjmetro.tip.views.HalfHintEditText>
+		    
+		    
+		</android.support.v7.widget.GridLayout>
+		
+	    
+	    
+	    <TextView
+	        style="@style/divider_text"
+	        android:text="@string/each" />
+	    
+	    
+	    
+	    <android.support.v7.widget.GridLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    style="@style/field_box"
+		    app:columnCount="2" >
+		    
+		    <TextView
+		        android:id="@+id/each_tipdollars_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="0"
+		        style="@style/item_label"
+		        android:text="@string/each_tip_dollar" />
+		
+		    <com.rjmetro.tip.views.HalfHintEditText
+		        android:id="@+id/each_tipdollars_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="0"
+		        style="@style/item_input"
+		        tip:permanentHint="$"
+		        tip:permanentHintPre="true"
+		        android:hint="@string/each_tip_dollar_hint" >
+		    </com.rjmetro.tip.views.HalfHintEditText>
+		    
+		    
+		    
+		    <TextView
+		        android:id="@+id/each_total_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="1"
+		        style="@style/item_label"
+		        android:text="@string/each_total" />
+		
+		    <com.rjmetro.tip.views.HalfHintEditText
+		        android:id="@+id/each_total_value"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="1"
+		        style="@style/item_input"
+		        tip:permanentHint="$"
+		        tip:permanentHintPre="true"
+		        android:hint="@string/each_total_hint" >
+		    </com.rjmetro.tip.views.HalfHintEditText>
+		    
+		    
+		</android.support.v7.widget.GridLayout>
+	    
+	    
+	    
+	</LinearLayout>
+</ScrollView>

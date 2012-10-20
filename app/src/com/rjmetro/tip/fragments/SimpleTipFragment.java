@@ -40,22 +40,6 @@ public class SimpleTipFragment extends TipFragment {
 		setInputText(total, dataman.formatMoney(newdata.total), newdata.totalEnabled);
 	}
 	
-	private void setInputText(HalfHintEditText edit, String text, boolean enabled) {
-		if (edit.isFocused() && edit.getText().toString().equals("")) {
-			Log.d(TAG, "blank input text for "+edit.getId()+". fixing: "+text);
-			edit.setUnformattedText(text, true);
-			edit.selectAll();
-		} if (edit.isFocused()) {
-			Log.d(TAG, "isfocused input text for "+edit.getId()+". fixing: "+text);
-			//edit.setUnformattedText(edit.getText().toString(), true);
-		} else if (enabled) {
-			Log.d(TAG, "enabled text for "+edit.getId()+". fixing: "+text);
-			edit.setUnformattedText(text, true);
-		} else {
-			Log.d(TAG, "disabled text for "+edit.getId()+". fixing: "+text);
-			edit.setUnformattedText(text, false);
-		}
-	}
 	
 	@AfterViews
 	public void setup() {
@@ -92,26 +76,6 @@ public class SimpleTipFragment extends TipFragment {
 			}
 		});
 	}
-	
-	public abstract class SmartEditListener implements PostEditListener {
-		View target;
-		public SmartEditListener(View target) {
-			this.target = target;
-		}
-		@Override
-		public void newText(String text) {
-			if (target.isFocused()) {
-				try {
-					runEvent(text);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		public abstract void runEvent(String text) throws Exception;
-
-	}
-	
 	
 	
 }
