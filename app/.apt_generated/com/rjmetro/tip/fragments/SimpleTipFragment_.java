@@ -28,10 +28,10 @@ public final class SimpleTipFragment_
     }
 
     private void afterSetContentView_() {
-        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
-        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
+        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         tipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tipdollars_input));
+        total = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.total_value));
         setup();
     }
 
