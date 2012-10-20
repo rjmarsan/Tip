@@ -4,7 +4,7 @@ public class Data {
 	public final static float NO_VALUE = Float.MAX_VALUE;
 	
 	public float   bill = NO_VALUE;
-	public boolean tipPercentEnabled = false;
+	public boolean tipPercentEnabled = true;
 	public float   tipPercent = 20f/100f;
 	public boolean tipAmountEnabled = false;
 	public float   tipAmount = NO_VALUE;
@@ -16,8 +16,7 @@ public class Data {
 	public float   totalEach = NO_VALUE;
 	public boolean totalEachEnabled = false;
 	
-	public int numberOfPeople;
-	public boolean splitEvenly;
+	public int numberOfPeople = 3;
 	
 	public boolean isValue(float value) {
 		return (value != NO_VALUE);

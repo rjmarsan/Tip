@@ -39,8 +39,9 @@ public class EvenSplitFragment extends TipFragment {
 		Log.d(TAG, "got Updating data: "+newdata);
 		setInputText(bill, dataman.formatMoney(newdata.bill), true);
 		setInputText(tipPercent, dataman.formatPercent(newdata.tipPercent), newdata.tipPercentEnabled);
-		setInputText(eachTipDollars, dataman.formatMoney(newdata.tipAmount), newdata.tipAmountEnabled);
-		setInputText(eachTotal, dataman.formatMoney(newdata.total), newdata.totalEnabled);
+		setInputText(numberPeople, dataman.formatInteger(newdata.numberOfPeople), true);
+		setInputText(eachTipDollars, dataman.formatMoney(newdata.tipAmountEach), newdata.tipAmountEachEnabled);
+		setInputText(eachTotal, dataman.formatMoney(newdata.totalEach), newdata.totalEachEnabled);
 	}
 	
 	
@@ -62,12 +63,20 @@ public class EvenSplitFragment extends TipFragment {
 				callback.updateTipPercentage(text);				
 			}
 		});
+		numberPeople.setPermanentText("");
+		numberPeople.setPermanentTextPre(true);
+		numberPeople.setPostEditListener(new SmartEditListener(numberPeople) {
+			@Override
+			public void runEvent(String text) throws Exception {
+				callback.updateNumber(text);				
+			}
+		});
 		eachTipDollars.setPermanentText(callback.getCurrencySymbol());
 		eachTipDollars.setPermanentTextPre(true);
 		eachTipDollars.setPostEditListener(new SmartEditListener(eachTipDollars) {
 			@Override
 			public void runEvent(String text) throws Exception {
-				callback.updateTipDollars(text);				
+				callback.updateTipDollarsEach(text);				
 			}
 		});
 		eachTotal.setPermanentText(callback.getCurrencySymbol());
@@ -75,7 +84,7 @@ public class EvenSplitFragment extends TipFragment {
 		eachTotal.setPostEditListener(new SmartEditListener(eachTotal) {
 			@Override
 			public void runEvent(String text) throws Exception {
-				callback.updateTotal(text);				
+				callback.updateTotalEach(text);				
 			}
 		});
 	}

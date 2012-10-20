@@ -88,111 +88,179 @@ public class DataManager {
 		float value = parseMoney(text);
 		Log.d(TAG, "Updating bill: value:"+value);
 		if (data.isValue(value) == false) return;
+		data.bill = value;
 		//this should be the first condition we hit.
 		if (data.tipPercentEnabled == false && data.isValue(data.tipPercent)) {
-			float bill = value;
-			float percent = data.tipPercent;
-			float tipamount = bill*percent;
-			float total = bill + tipamount;
-			
-			data.tipAmount = tipamount;
-			data.total = total;
+			calculateTipPercent(data.tipPercent);
 		} else if (data.tipPercentEnabled && data.isValue(data.tipPercent)) {
-			float bill = value;
-			float percent = data.tipPercent;
-			float tipamount = bill*percent;
-			float total = bill + tipamount;
-			
-			data.tipAmount = tipamount;
-			data.total = total;
+			calculateTipPercent(data.tipPercent);
 		} else if (data.tipAmountEnabled && data.isValue(data.tipAmount)) {
-			float bill = value;
-			float tipamount = data.tipAmount;
-			float percent = tipamount/bill;
-			float total = bill + tipamount;
-			
-			data.tipPercent = percent;
-			data.total = total;
+			calculateTipDollars(data.tipAmount);
 		} else if (data.totalEnabled && data.isValue(data.total)) {
-			float bill = value;
-			float total = data.total;
-			float tipamount = total-bill;
-			float percent = tipamount/bill;
-			
-			data.tipAmount = tipamount;
-			data.tipPercent = percent;
+			calculateTotal(data.total);
 		}
-		data.bill = value;
+		updateSplit();
 		notifyChange();
 
 	}
 	public void updateTipPercentage(String text) throws ParseException {
 		if (text.equals("")) {
-			clearEnabled();
+			clearSimpleEnabled();
 			data.tipAmountEnabled = true;
 		} else {
 			float value = parsePercent(text);
-			clearEnabled();
+			clearSimpleEnabled();
 			data.tipPercentEnabled = true; //yeah, because we're calling this, it must be from the user....?
 			
-			float bill = data.bill;
-			float percent = value;
-			float tipamount = bill*percent;
-			float total = bill + tipamount;
-			
-			data.tipAmount = tipamount;
-			data.total = total;
-			data.tipPercent = value;
+			calculateTipPercent(value);
+			updateSplit();
 		}
 		notifyChange();		
 	}
 	public void updateTipDollars(String text) throws ParseException {
 		if (text.equals("")) {
-			clearEnabled();
+			clearSimpleEnabled();
 			data.tipPercentEnabled = true;
 		} else {
 			float value = parseMoney(text);
-			clearEnabled();
+			clearSimpleEnabled();
 			data.tipAmountEnabled = true; //yeah, because we're calling this, it must be from the user....?
 			
-			float bill = data.bill;
-			float tipamount = value;
-			float percent = tipamount/bill;
-			float total = bill + tipamount;
-			
-			data.tipPercent = percent;
-			data.total = total;
-			data.tipAmount = value;
+			calculateTipDollars(value);
+			updateSplit();
 		}
 		notifyChange();		
 		
 	}
 	public void updateTotal(String text) throws ParseException {
 		if (text.equals("")) {
-			clearEnabled();
+			clearSimpleEnabled();
 			data.tipPercentEnabled = true;
 		} else {
 			float value = parseMoney(text);
-			clearEnabled();
+			clearSimpleEnabled();
 			data.totalEnabled = true; //yeah, because we're calling this, it must be from the user....?
 			
-			float bill = data.bill;
-			float total = value;
-			float tipamount = total-bill;
-			float percent = tipamount/bill;
-			
-			data.tipAmount = tipamount;
-			data.tipPercent = percent;
-			data.total = value;
+			calculateTotal(value);
+			updateSplit();
 		}
 		notifyChange();		
 
 	}
 	
-	private void clearEnabled() {
+	
+	public void calculateTipPercent(float value) {
+		float bill = data.bill;
+		float percent = value;
+		float tipamount = bill*percent;
+		float total = bill + tipamount;
+		
+		data.tipAmount = tipamount;
+		data.total = total;
+		data.tipPercent = value;
+	}
+
+
+	public void calculateTipDollars(float value) {
+		float bill = data.bill;
+		float tipamount = value;
+		float percent = tipamount/bill;
+		float total = bill + tipamount;
+		
+		data.tipPercent = percent;
+		data.total = total;
+		data.tipAmount = value;
+	}
+	
+	public void calculateTotal(float value) {
+		float bill = data.bill;
+		float total = value;
+		float tipamount = total-bill;
+		float percent = tipamount/bill;
+		
+		data.tipAmount = tipamount;
+		data.tipPercent = percent;
+		data.total = value;
+	}
+	
+	public void calculateNumberOfPeople(int number) {
+		data.numberOfPeople = number;
+	}
+	
+	public void calculateTotalEach(float value) {
+		calculateTotal(value*data.numberOfPeople);
+		data.totalEach = value;
+	}
+
+	public void calculateTipDollarsEach(float value) {
+		calculateTipDollars(value*data.numberOfPeople);
+		data.tipAmountEach = value;
+	}
+
+	
+	
+	
+	public void updateNumber(String text) throws ParseException {
+		if (text.equals("")) {
+			return;
+		} else {
+			int value = parseInteger(text);
+
+			calculateNumberOfPeople(value);
+			updateSplit();
+		}
+		notifyChange();		
+
+	}
+	public void updateTotalEach(String text) throws ParseException {
+		if (text.equals("")) {
+			clearSplitEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearSplitEnabled();
+			data.totalEachEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			
+			calculateTotalEach(value);
+			updateSplit();
+		}
+		notifyChange();		
+
+	}
+	public void updateTipDollarsEach(String text) throws ParseException {
+		if (text.equals("")) {
+			clearSplitEnabled();
+			data.tipPercentEnabled = true;
+		} else {
+			float value = parseMoney(text);
+			clearSplitEnabled();
+			data.tipAmountEachEnabled = true; //yeah, because we're calling this, it must be from the user....?
+			
+			calculateTipDollarsEach(value);
+			updateSplit();
+		}
+		notifyChange();		
+
+	}
+
+	
+	public void updateSplit() {
+		data.tipAmountEach = data.tipAmount / data.numberOfPeople;
+		data.totalEach = data.total / data.numberOfPeople;
+		
+	}
+	
+	
+	
+	private void clearSimpleEnabled() {
 		data.tipPercentEnabled = false;
 		data.tipAmountEnabled = false;
 		data.totalEnabled = false;
+	}
+	private void clearSplitEnabled() {
+		data.tipAmountEachEnabled = false;
+		data.totalEachEnabled = false;
+		data.tipPercentEnabled = false;
 	}
 	
 	public String getCurrencySymbol() {
