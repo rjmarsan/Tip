@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    >
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    
+	    <android.support.v7.widget.GridLayout 
+		    xmlns:app="http://schemas.android.com/apk/res/com.rjmetro.tip"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:padding="16dp"
+		    app:columnCount="2" >
+		
+		    <TextView
+		        android:id="@+id/bill_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="0"
+		        style="@style/item_label"
+		        android:text="@string/bill" />
+		
+		    <EditText
+		        android:id="@+id/bill_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="0"
+		        style="@style/item_input"
+		        android:hint="$37.13" >
+		        <requestFocus />
+		    </EditText>
+		
+		    <TextView
+		        android:id="@+id/tippercent_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="1"
+		        style="@style/item_label"
+		        android:text="@string/tip_percent" />
+		
+		    <EditText
+		        android:id="@+id/tippercent_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="1"
+		        style="@style/item_input"
+		        android:hint="15%" >
+		    </EditText>
+		
+		    
+		    <TextView
+		        android:id="@+id/tipdollars_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="2"
+		        style="@style/item_label"
+		        android:text="@string/tip_dollar" />
+		
+		    <EditText
+		        android:id="@+id/tipdollars_input"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="2"
+		        style="@style/item_input"
+		        android:hint="$4.23" >
+		    </EditText>
+		    
+		    
+		    
+		    <TextView
+		        android:id="@+id/total_text"
+		        app:layout_column="0"
+		        app:layout_gravity="left"
+		        app:layout_row="3"
+		        style="@style/item_label"
+		        android:text="@string/total" />
+		
+		    <EditText
+		        android:id="@+id/total_value"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        app:layout_column="1"
+		        app:layout_gravity="fill_horizontal"
+		        app:layout_row="3"
+		        style="@style/item_input"
+		        android:hint="$41.23" >
+		    </EditText>
+		    
+		    
+		</android.support.v7.widget.GridLayout>
+	</LinearLayout>
+</ScrollView>
