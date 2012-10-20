@@ -13,6 +13,7 @@
         <item name="android:layout_height">36sp</item>
         <item name="android:gravity">right</item>
         <item name="android:inputType">numberDecimal</item>
+        <item name="android:digits">0123456789,.</item>
         <item name="android:textColor">@color/bold_text_color</item>
         <item name="android:textColorHighlight">@color/accent</item>
         <item name="android:textColorHint">@color/default_text_color</item>

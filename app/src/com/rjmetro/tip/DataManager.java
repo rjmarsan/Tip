@@ -48,34 +48,44 @@ public class DataManager {
 	
 	public String formatMoney(float value) {
 		if (data.isValue(value) == false) return "";
-		String s = NumberFormat.getCurrencyInstance().format(value);
-		if (s.endsWith(".00")) {
-			s = s.replace(".00", "");
-		} 
+		String s = NumberFormat.getCurrencyInstance(getLocale()).format(value);
 		return s;
 	}
 	
 	public String formatPercent(float value) {
 		if (data.isValue(value) == false) return "";
-		return NumberFormat.getPercentInstance().format(value);
+		return NumberFormat.getPercentInstance(getLocale()).format(value);
 	}
 	
 	public String formatInteger(int value) {
 		if (data.isValue(value) == false) return "";
-		return NumberFormat.getIntegerInstance().format(value);
+		return NumberFormat.getIntegerInstance(getLocale()).format(value);
 	}
 	
 	public float parseMoney(String value) throws ParseException {
-		return NumberFormat.getCurrencyInstance().parse(value).floatValue();
+		return NumberFormat.getNumberInstance(getLocale()).parse(value).floatValue();
 	}
 
 	public float parsePercent(String value) throws ParseException {
-		return NumberFormat.getPercentInstance().parse(value).floatValue();
+		return NumberFormat.getNumberInstance(getLocale()).parse(value).floatValue()/100f;
 	}
 	
 	public int parseInteger(String value) throws ParseException {
-		return NumberFormat.getIntegerInstance().parse(value).intValue();
+		return NumberFormat.getIntegerInstance(getLocale()).parse(value).intValue();
 	}
+	
+	public String getCurrencySymbol() {
+		return Currency.getInstance(getLocale()).getSymbol();
+	}
+	public String getPercentSymbol() {
+		return "%";
+	}
+	
+	public Locale getLocale() {
+		return new Locale("es", "ES");
+	}
+
+
 	
 	
 	
@@ -384,19 +394,6 @@ public class DataManager {
 	private float getSumTaxed() {
 		return (1f+data.tax/data.bill)*getSumOfItems();
 	}
-	
-	
-	
-	
-	
-	
-	public String getCurrencySymbol() {
-		return Currency.getInstance(Locale.getDefault()).getSymbol();
-	}
-	public String getPercentSymbol() {
-		return "%";
-	}
-
 
 
 	

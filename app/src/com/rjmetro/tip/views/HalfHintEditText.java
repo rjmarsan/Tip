@@ -76,7 +76,7 @@ public class HalfHintEditText extends EditText {
 				String target = formatString(text);
 				Log.d(TAG, String.format("afterTextChanged: pre:%s, post:%s", text, target));
 				if (text.equals(target)) {
-					if (listener != null) listener.newText(text);
+					if (listener != null) listener.newText(text.replace(permanentText, ""));
 				} else {
 					styleStringAndSet(target, true);
 					if (getText().toString().length() > permanentText.length()) {
