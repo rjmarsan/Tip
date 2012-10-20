@@ -49,9 +49,9 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(false);
+//        actionBar.setDisplayShowHomeEnabled(false);
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayShowCustomEnabled(false);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -75,7 +75,7 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
             actionBar.addTab(
                     actionBar.newTab()
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setIcon(mSectionsPagerAdapter.getPageIcon(i))
+                            //.setIcon(mSectionsPagerAdapter.getPageIcon(i))
                             .setTabListener(this));
         }
         actionBar.selectTab(actionBar.getTabAt(1));
@@ -135,15 +135,15 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
             return 3;
         }
 
-//      @Override
-//      public CharSequence getPageTitle(int position) {
-//          switch (position) {
-//              case 0: return getString(R.string.title_section1).toUpperCase();
-//              case 1: return getString(R.string.title_section2).toUpperCase();
-//              case 2: return getString(R.string.title_section3).toUpperCase();
-//          }
-//          return null;
-//      }
+      @Override
+      public CharSequence getPageTitle(int position) {
+          switch (position) {
+              case 0: return getString(R.string.title_section1).toUpperCase();
+              case 1: return getString(R.string.title_section2).toUpperCase();
+              case 2: return getString(R.string.title_section3).toUpperCase();
+          }
+          return null;
+      }
 
      public int getPageIcon(int position) {
           switch (position) {

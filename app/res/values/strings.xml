@@ -1,18 +1,22 @@
 <resources>
 
     <string name="app_name">Tip</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section1">Section 1</string>
+    <string name="title_section3">Uneven Split</string>
+    <string name="title_section2">Calculate</string>
+    <string name="title_section1">Even Split</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_tip">Tip</string>
 
 
     <string name="bill">Bill</string>
+    <string name="bill_hint">Bill Amount</string>
     <string name="tip_percent">Tip %</string>
+    <string name="tip_percent_hint">Tip Amount (in %)</string>
     <string name="tip_dollar">Tip $</string>
+    <string name="tip_dollar_hint">Tip Amount (in $)</string>
     <string name="total">Total</string>
+    <string name="total_hint">Total Amount</string>
     
 
 </resources>
