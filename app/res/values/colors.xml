@@ -1,7 +1,8 @@
 <resources>
 	<color name="default_text_color">#80000000</color>
 	<color name="bold_text_color">#ff222222</color>
-
+	<color name="divider_text_color">#33000000</color>
+	
 	<color name="accent">#99cc00</color>
 	
 	

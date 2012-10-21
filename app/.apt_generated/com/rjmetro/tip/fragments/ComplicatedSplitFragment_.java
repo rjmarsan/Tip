@@ -30,14 +30,14 @@ public final class ComplicatedSplitFragment_
     }
 
     private void afterSetContentView_() {
-        tax = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tax_input));
-        yourTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_tipdollars_input));
-        taxText = ((TextView) findViewById(com.rjmetro.tip.R.id.tax_text));
-        tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
-        yourTipDollarsText = ((TextView) findViewById(com.rjmetro.tip.R.id.your_tipdollars_text));
-        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
         itemsHolder = ((LinearLayout) findViewById(com.rjmetro.tip.R.id.itemized_holder));
+        yourTipDollarsText = ((TextView) findViewById(com.rjmetro.tip.R.id.your_tipdollars_text));
+        taxText = ((TextView) findViewById(com.rjmetro.tip.R.id.tax_text));
+        tax = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tax_input));
         yourTotal = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_total_value));
+        tipPercent = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.tippercent_input));
+        bill = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.bill_input));
+        yourTipDollars = ((HalfHintEditText) findViewById(com.rjmetro.tip.R.id.your_tipdollars_input));
         setup();
     }
 

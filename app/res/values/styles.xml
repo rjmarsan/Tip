@@ -2,7 +2,7 @@
 
 
     <style name="item_label">
-        <item name="android:layout_width">70sp</item>
+        <item name="android:layout_width">75sp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/default_text_color</item>
@@ -10,7 +10,7 @@
     </style>
     <style name="item_input_nothack">
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_height">36sp</item>
+        <item name="android:layout_height">40sp</item>
         <item name="android:gravity">right</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:digits">0123456789,.</item>
@@ -30,10 +30,10 @@
     <style name="divider_text">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textColor">@color/divider_text_color</item>
         <item name="android:gravity">center</item>
         
     </style>
