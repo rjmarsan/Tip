@@ -173,6 +173,9 @@ public class TipActivity extends SherlockFragmentActivity implements ActionBar.T
         case R.id.menu_clear:
             clear();
             return true;
+        case R.id.menu_about:
+            About.showAbout(this);
+            return true;
         }
     	return super.onOptionsItemSelected(item);
     }
